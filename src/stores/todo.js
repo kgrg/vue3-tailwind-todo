@@ -32,7 +32,7 @@ export const useTodoStore = defineStore('todo', {
       return [
         {
           key: 'name',
-          label: 'Task name'
+          label: 'Task'
         },
         {
           key: 'description',
