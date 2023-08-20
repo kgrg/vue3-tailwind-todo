@@ -1,41 +1,29 @@
-# vue-tailwindcss-crud
 
-This template should help get you started developing with Vue 3 in Vite.
+# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia
 
-## Recommended IDE Setup
+## 📚 Overview
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This is a simple CRUD (Create, Read, Update, Delete) application built with Vue.js, Tailwind CSS, the Composition API, and Pinia for state management. It allows you to manage your tasks seamlessly with an intuitive user interface.
 
-## Customize configuration
+## ✨ Features
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- 📝 Create, read, update, and delete tasks.
+- 🔄 State management using Pinia.
+- 📱 Responsive design with Tailwind CSS.
+- 🧩 Utilizes Vue.js Composition API for better code organization.
 
-## Project Setup
+## 🛠️ Installation
 
-```sh
-npm install
-```
+1. 📂 Clone the repository: `git clone https://github.com/kirangurung2023/vue3-talwind-todo.git`
+2. 🚀 Navigate into the directory: `cd vue3-talwind-todo`
+3. 📦 Install the dependencies: `npm install`
+4. 🎉 Start the server: `npm run serve`
 
-### Compile and Hot-Reload for Development
+## 🕹️ Usage
 
-```sh
-npm run dev
-```
+After starting the server, navigate to `http://localhost:5173` in your browser. You can now add, view, update, and delete tasks.
 
-### Compile and Minify for Production
+## 🤝 Contributing
 
-```sh
-npm run build
-```
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
