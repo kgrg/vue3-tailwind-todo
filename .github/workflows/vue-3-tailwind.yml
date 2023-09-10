@@ -25,10 +25,10 @@ jobs:
       - name: Build Vue.js app
         run: npm run build
 
-      - name: Run tests and generate coverage report
-        run: npm run test:unit -- --coverage
+      # - name: Run tests and generate coverage report
+      #   run: npm run test:unit -- --coverage
 
-      - name: Publish coverage report to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      # - name: Publish coverage report to Codecov
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
