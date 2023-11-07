@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref , computed } from 'vue';
+import { ref , computed, onMounted } from 'vue';
 import Datatable from '@/components/Datatable.vue'
 import BaseModel from '@/components/BaseModal.vue'
 import TodoForm from '@/components/TodoForm.vue'
@@ -68,6 +68,10 @@ const openEditModal = (id) => {
 const deleteTodo = (id) => {
   tasksStore.deleteTodo(id)
 };
+
+onMounted(() => {
+    tasksStore.loadTodos()
+});
 
 </script>
 

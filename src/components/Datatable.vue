@@ -9,6 +9,11 @@
       </tr>
     </thead>
     <tbody>
+      <tr v-if="rows.length === 0">
+        <td :colspan="columns.length + 1" class="text-center px-4 py-3">
+          😃 All tasks completed!
+        </td>
+      </tr>
       <tr v-for="row in rows" :key="row.id" class="border-b dark:border-gray-700">
         <td v-for="column in columns" :key="column.key" class="px-4 py-3">
           {{ row[column.key] }}
