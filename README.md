@@ -1,9 +1,10 @@
 
-# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia [Live Demo]("https://vue3-tailwind-todo.vercel.app/")
+# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia
 
 ## 📚 Overview
 
 This is a simple CRUD (Create, Read, Update, Delete) application built with Vue.js, Tailwind CSS, the Composition API, and Pinia for state management. It allows you to manage your tasks seamlessly with an intuitive user interface.
+### [Live Demo](https://vue3-tailwind-todo.vercel.app/)
 ![Example Image](https://github.com/kirangurung2023/vue3-talwind-todo/blob/main/public/crud.png)
 
 ## ✨ Features
