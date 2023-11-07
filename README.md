@@ -1,5 +1,5 @@
 
-# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia
+# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia [Live Demo]("https://vue3-tailwind-todo.vercel.app/")
 
 ## 📚 Overview
 
