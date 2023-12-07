@@ -30,14 +30,8 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
 
 const emit = defineEmits(['edit', 'delete'])
-
-const props = defineProps({
-  rows: Array,
-  columns: Array
-})
 
 const editTodo = todoId => {
   emit('edit', todoId);

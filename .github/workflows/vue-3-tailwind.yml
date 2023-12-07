@@ -25,6 +25,9 @@ jobs:
       - name: Build Vue.js app
         run: npm run build
 
+      - name: Run ESLint
+        run: npm run lint
+
       # - name: Run tests and generate coverage report
       #   run: npm run test:unit -- --coverage
 
