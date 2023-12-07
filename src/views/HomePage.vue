@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="overflow-x-auto">
-          <Datatable :rows="rows" :columns="columns" @edit="openEditModal" @delete="deleteTodo"  />
+          <DataTable :rows="rows" :columns="columns" @edit="openEditModal" @delete="deleteTodo"  />
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref , computed, onMounted } from 'vue';
-import Datatable from '@/components/Datatable.vue'
+import DataTable from '@/components/DataTable.vue'
 import BaseModel from '@/components/BaseModal.vue'
 import TodoForm from '@/components/TodoForm.vue'
 
