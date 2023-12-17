@@ -6,7 +6,8 @@ const props = {
   id: 'input-id',
   label: 'input-label',
   placeholder: 'input-placeholder',
-  required: true 
+  modelValue: 'Test Value',
+  required: true
 }
 
 describe('TodoInput', () => {
@@ -21,8 +22,10 @@ describe('TodoInput', () => {
   })
 
   it('uses the correct placeholder', () => {
-    const wrapper = mount(TodoInput, {props})
-    expect(wrapper.find('input').attributes('placeholder')).toBe(props.placeholder)
+    const wrapper = mount(TodoInput, { props })
+    expect(wrapper.find('input').attributes('placeholder')).toBe(
+      props.placeholder
+    )
   })
 
   it('uses the correct required attribute', () => {
@@ -32,7 +35,8 @@ describe('TodoInput', () => {
 
   it('binds the correct value to v-model', async () => {
     const wrapper = mount(TodoInput, { props })
-    await wrapper.find('input').setValue('Test Value')
-    expect(wrapper.vm.modelValue).toBe('Test Value')
+    await wrapper.find('input').setValue('New Value')
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['New Value'])
   })
 })
