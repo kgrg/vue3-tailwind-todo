@@ -31,5 +31,11 @@
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.9",
     "vitest": "^0.34.2"
-  }
+  },
+  "keywords": [
+    "vue-3",
+    "compposition-api",
+    "pinia",
+    "tailwindcss"
+  ]
 }
