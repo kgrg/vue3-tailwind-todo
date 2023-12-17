@@ -33,6 +33,17 @@
 
 const emit = defineEmits(['edit', 'delete'])
 
+const { rows, columns } = defineProps({
+  rows: {
+    type: Array,
+    required: true,
+  },
+  columns: {
+    type: Array,
+    required: true,
+  }
+});
+
 const editTodo = todoId => {
   emit('edit', todoId);
 };
