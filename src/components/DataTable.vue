@@ -1,8 +1,6 @@
 <template>
   <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-    <thead
-      class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
-    >
+    <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th v-for="column in columns" :key="column.key" class="px-4 py-4">
           {{ column.label }}
@@ -12,31 +10,19 @@
     </thead>
     <tbody>
       <tr v-if="rows.length === 0">
-        <td :colspan="columns.length + 1" class="px-4 py-3 text-center">
+        <td :colspan="columns.length + 1" class="text-center px-4 py-3">
           😃 All tasks completed!
         </td>
       </tr>
-      <tr
-        v-for="row in rows"
-        :key="row.id"
-        class="border-b dark:border-gray-700"
-      >
+      <tr v-for="row in rows" :key="row.id" class="border-b dark:border-gray-700">
         <td v-for="column in columns" :key="column.key" class="px-4 py-3">
           {{ row[column.key] }}
         </td>
         <td class="flex items-center px-4 py-3">
-          <button
-            @click="editTodo(row.id)"
-            class="mr-2 flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            Edit
-          </button>
-          <button
-            @click="deleteTodo(row.id)"
-            class="flex items-center justify-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          >
-            Delete
-          </button>
+          <button @click="editTodo(row.id)"
+            class="flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mr-2">Edit</button>
+          <button @click="deleteTodo(row.id)"
+            class="flex items-center justify-center rounded-lg bg-red-700 px-4 py-2 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -44,24 +30,26 @@
 </template>
 
 <script setup>
+
 const emit = defineEmits(['edit', 'delete'])
 
 const { rows, columns } = defineProps({
   rows: {
     type: Array,
-    required: true
+    required: true,
   },
   columns: {
     type: Array,
-    required: true
+    required: true,
   }
-})
+});
 
-const editTodo = (todoId) => {
-  emit('edit', todoId)
-}
+const editTodo = todoId => {
+  emit('edit', todoId);
+};
 
-const deleteTodo = (todoId) => {
-  emit('delete', todoId)
-}
+const deleteTodo = todoId => {
+  emit('delete', todoId);
+};
+
 </script>
