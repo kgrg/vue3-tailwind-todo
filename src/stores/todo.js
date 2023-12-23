@@ -15,17 +15,20 @@ export const useTodoStore = defineStore('todo', {
     },
     createTodo(todo) {
       this.todos.push({
-        id : Date.now(),
+        id: Date.now(),
         ...todo,
         createdDate: new Date().toLocaleString(),
-        lastModifiedDate: new Date().toLocaleString(),
+        lastModifiedDate: new Date().toLocaleString()
       })
       localStorage.setItem('todos', JSON.stringify(this.todos))
     },
     updateTodo(updatedTodo) {
       const index = this.todos.findIndex((todo) => todo.id === updatedTodo.id)
       if (index !== -1) {
-        this.todos[index] = { ...updatedTodo, lastModifiedDate: new Date().toLocaleString() }
+        this.todos[index] = {
+          ...updatedTodo,
+          lastModifiedDate: new Date().toLocaleString()
+        }
         localStorage.setItem('todos', JSON.stringify(this.todos))
       }
     },
