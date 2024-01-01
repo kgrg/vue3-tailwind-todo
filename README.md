@@ -1,5 +1,5 @@
 
-# 🚀 Vue3 Tailwind CRUD example using Composition API and Pinia
+# 🚀 Vue3 Tailwind CRUD example
 
 ## 📚 Overview
 
@@ -21,11 +21,14 @@ This is a simple CRUD (Create, Read, Update, Delete) application built with Vue.
 3. 📦 Install the dependencies: `npm install`
 4. 🎉 Start the server: `npm run dev`
 
+## 🧪 Testing (Unit Test)
+1. unit test : `npm run test:unit`
+2. unit test with coverage :  `npm run test:unit --coverage` or `npm run test:unit:coverage`
+
+## 🧪 Testing (e23 )
+coming soon.....
+
 ## 🕹️ Usage
 
 After starting the server, navigate to `http://localhost:5173` in your browser. You can now add, view, update, and delete tasks.
-
-## 🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
