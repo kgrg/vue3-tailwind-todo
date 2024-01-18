@@ -25,7 +25,7 @@ This is a simple CRUD (Create, Read, Update, Delete) application built with Vue.
 1. unit test : `npm run test:unit`
 2. unit test with coverage :  `npm run test:unit --coverage` or `npm run test:unit:coverage`
 
-## 🧪 Testing (e23 )
+## 🧪 Testing (e2e )
 coming soon.....
 
 ## 🕹️ Usage
