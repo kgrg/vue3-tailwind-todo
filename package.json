@@ -2,16 +2,18 @@
   "name": "vue-tailwindcss-crud",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint .",
     "format": "prettier --write src/",
     "test:unit:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@vitest/eslint-plugin": "^1.1.8",
     "pinia": "^2.1.7",
     "vue": "^3.3.12",
     "vue-router": "^4.2.5"
@@ -20,18 +22,18 @@
     "@rushstack/eslint-patch": "^1.6.1",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vitest/coverage-v8": "^1.0.4",
-    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/test-utils": "^2.4.3",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.56.0",
+    "eslint": "^9.14.0",
     "eslint-plugin-vue": "^9.19.2",
     "jsdom": "^23.0.1",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwindcss": "^3.3.6",
-    "vite": "^5.0.10",
+    "vite": "^5.4.10",
     "vitest": "^1.0.4"
   },
   "keywords": [
