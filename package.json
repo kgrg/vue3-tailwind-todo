@@ -15,6 +15,7 @@
   "dependencies": {
     "@vitest/eslint-plugin": "^1.1.8",
     "pinia": "^2.1.7",
+    "vite-plugin-vue-devtools": "^7.6.4",
     "vue": "^3.3.12",
     "vue-router": "^4.2.5"
   },
