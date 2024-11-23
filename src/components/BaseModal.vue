@@ -1,68 +1,127 @@
 <template>
-  <Transition>
-    <div
-      id="createProductModal"
-      tabindex="-1"
-      aria-hidden="true"
-      v-if="modalActive"
-      class="max-h-fulloverflow-y-auto fixed fixed left-0 left-0 right-0 right-0 top-0 top-0 z-50 z-50 flex h-[calc(100%-1rem)] h-[calc(100%-1rem)] max-h-full w-full w-full items-center items-center justify-center justify-center overflow-y-auto overflow-x-hidden overflow-x-hidden md:inset-0 md:inset-0"
+  <Teleport to="body">
+    <Transition
+      enter-active-class="ease-out duration-300"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="ease-in duration-200"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
     >
-      <div class="relative max-h-full w-full max-w-2xl p-4">
-        <!-- Modal content -->
+      <div
+        v-if="modalActive"
+        class="fixed inset-0 z-50 overflow-y-auto"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-modal="true"
+        @keydown.esc="closeModal"
+      >
         <div
-          class="relative rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-5"
+          class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0"
         >
-          <!-- Modal header -->
+          <!-- Backdrop -->
           <div
-            class="mb-4 flex items-center justify-between rounded-t border-b pb-4 dark:border-gray-600 sm:mb-5"
+            class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity dark:bg-opacity-80"
+            aria-hidden="true"
+            @click="closeModal"
+          ></div>
+
+          <!-- Modal panel -->
+          <div
+            class="relative w-full max-w-2xl transform overflow-hidden rounded-lg bg-white p-4 text-left shadow-xl transition-all dark:bg-gray-800 sm:p-5"
+            @click.stop
           >
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-              Add Task
-            </h3>
-            <button
-              type="button"
-              class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-target="createProductModal"
-              data-modal-toggle="createProductModal"
-              @click="$emit('close-modal')"
+            <!-- Header -->
+            <header
+              class="mb-4 flex items-center justify-between rounded-t border-b pb-4 dark:border-gray-600 sm:mb-5"
             >
-              <svg
-                aria-hidden="true"
-                class="h-5 w-5"
-                fill="currentColor"
-                viewbox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+              <h2
+                id="modal-title"
+                class="text-lg font-semibold text-gray-900 dark:text-white"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="sr-only">Close modal</span>
-            </button>
+                <slot name="title">Add Task</slot>
+              </h2>
+
+              <button
+                type="button"
+                class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-gray-600 dark:hover:text-white"
+                @click="closeModal"
+                aria-label="Close modal"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </header>
+
+            <!-- Body -->
+            <div class="modal-body">
+              <slot />
+            </div>
           </div>
-          <!-- Modal body -->
-          <slot />
         </div>
       </div>
-    </div>
-  </Transition>
-  <div
-    v-if="modalActive"
-    modal-backdrop=""
-    class="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 dark:bg-opacity-80"
-  ></div>
+    </Transition>
+  </Teleport>
 </template>
 
-<script setup>
-defineEmits(['close-modal'])
-defineProps({
-  modalActive: {
-    type: Boolean,
-    default: false
+<script setup lang="ts">
+import { onMounted, onUnmounted, watch } from 'vue'
+import { useFocusTrap } from '@/composables/useFocusTrap'
+
+interface ModalProps {
+  modalActive: boolean
+}
+
+interface ModalEmits {
+  'close-modal': () => void
+  'update:modalActive': (value: boolean) => void
+}
+
+const props = defineProps<ModalProps>()
+const emit = defineEmits<ModalEmits>()
+
+const { handleTabKey, initializeFocus, restoreFocus } = useFocusTrap(props.modalActive)
+
+const closeModal = () => {
+  emit('close-modal')
+  emit('update:modalActive', false)
+}
+
+// Manage modal state
+watch(() => props.modalActive, (newValue) => {
+  if (newValue) {
+    initializeFocus()
+    document.body.style.overflow = 'hidden'
+  } else {
+    restoreFocus()
+    document.body.style.overflow = ''
   }
+})
+
+onMounted(() => {
+  document.addEventListener('keydown', handleTabKey)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleTabKey)
+  document.body.style.overflow = ''
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.modal-body {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+</style>
