@@ -33,14 +33,32 @@
   </form>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useTodoStore } from '@/stores/todo'
 import TodoInput from './Form/TodoInput.vue'
 import TodoTextBox from './Form/TodoTextBox.vue'
 import TodoDropdown from './Form/TodoDropdown.vue'
 
-const emit = defineEmits(['close-modal'])
+// Add TypeScript interface for todo
+interface TodoFormData {
+  name: string
+  description: string
+  status: string
+}
+
+// Initialize with proper typing
+const todo = ref<TodoFormData>({
+  name: '',
+  description: '',
+  status: 'todo'
+})
+
+// Add proper typing for emit
+const emit = defineEmits<{
+  (e: 'close-modal'): void
+  (e: 'update:todoId', value: number | null): void
+}>()
 
 const props = defineProps({
   todoId: {
@@ -49,11 +67,6 @@ const props = defineProps({
   }
 })
 const tasksStore = useTodoStore()
-const todo = ref({
-  name: '',
-  description: '',
-  status: 'todo'
-})
 
 const statusList = [
   { text: 'Todo', value: 'todo' },
@@ -61,24 +74,29 @@ const statusList = [
   { text: 'Done', value: 'done' }
 ]
 
-const performAction = () => {
-  if (props.todoId) {
-    updateTask()
-  } else {
-    addTask()
+// Add error handling
+const performAction = async () => {
+  try {
+    if (props.todoId) {
+      await updateTask()
+    } else {
+      await addTask()
+    }
+    emit('close-modal')
+  } catch (error) {
+    console.error('Error performing todo action:', error)
+    // Add error handling UI feedback
   }
 }
 
 const addTask = () => {
   tasksStore.createTodo({ ...todo.value, id: Date.now() })
   resetTodo()
-  emit('close-modal')
 }
 
 const updateTask = () => {
   tasksStore.updateTodo({ ...todo.value })
   resetTodo()
-  emit('close-modal')
 }
 
 const resetTodo = () => {

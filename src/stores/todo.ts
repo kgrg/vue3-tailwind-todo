@@ -2,11 +2,17 @@ import { defineStore } from 'pinia'
 import { Todo, TodoState, TodoColumn } from '@/types/todo'
 import { StorageService } from '@/services/storage.service'
 
+// Add proper error typing
+interface TodoError {
+  message: string
+  code?: string
+}
+
 export const useTodoStore = defineStore('todo', {
   state: (): TodoState => ({
     todos: [],
     isLoading: false,
-    error: null
+    error: null as TodoError | null
   }),
 
   actions: {
@@ -15,10 +21,13 @@ export const useTodoStore = defineStore('todo', {
       this.error = null
 
       try {
-        this.todos = StorageService.getTodos()
+        this.todos = await StorageService.getTodos()
       } catch (error) {
-        this.error = 'Failed to load todos'
-        console.error(error)
+        this.error = {
+          message: 'Failed to load todos',
+          code: 'LOAD_ERROR'
+        }
+        throw error
       } finally {
         this.isLoading = false
       }

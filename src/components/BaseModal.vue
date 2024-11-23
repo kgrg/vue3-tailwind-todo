@@ -23,7 +23,7 @@
           <div
             class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity dark:bg-opacity-80"
             aria-hidden="true"
-            @click="closeModal"
+            @click="handleBackdropClick"
           ></div>
 
           <!-- Modal panel -->
@@ -39,7 +39,7 @@
                 id="modal-title"
                 class="text-lg font-semibold text-gray-900 dark:text-white"
               >
-                <slot name="title">Add Task</slot>
+                <slot name="title">{{ title }}</slot>
               </h2>
 
               <button
@@ -76,11 +76,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, watch, defineProps, defineEmits } from 'vue'
 import { useFocusTrap } from '@/composables/useFocusTrap'
 
 interface ModalProps {
   modalActive: boolean
+  title?: string
 }
 
 interface ModalEmits {
@@ -88,7 +89,9 @@ interface ModalEmits {
   'update:modalActive': (value: boolean) => void
 }
 
-const props = defineProps<ModalProps>()
+const props = withDefaults(defineProps<ModalProps>(), {
+  title: 'Add Task'
+})
 const emit = defineEmits<ModalEmits>()
 
 const { handleTabKey, initializeFocus, restoreFocus } = useFocusTrap(props.modalActive)
@@ -96,6 +99,12 @@ const { handleTabKey, initializeFocus, restoreFocus } = useFocusTrap(props.modal
 const closeModal = () => {
   emit('close-modal')
   emit('update:modalActive', false)
+}
+
+const handleBackdropClick = (event: MouseEvent) => {
+  if (event.target === event.currentTarget) {
+    closeModal()
+  }
 }
 
 // Manage modal state
@@ -114,8 +123,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleTabKey)
   document.body.style.overflow = ''
+  document.removeEventListener('keydown', handleTabKey)
 })
 </script>
 
