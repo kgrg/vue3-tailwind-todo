@@ -1,4 +1,4 @@
-import { Todo } from '@/types/todo'
+import type { Todo } from '@/modules/todo/types/todo'
 
 const STORAGE_KEY = 'todos'
 

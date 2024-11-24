@@ -1,91 +1,63 @@
 import { defineStore } from 'pinia'
-import { Todo, TodoState, TodoColumn } from '@/types/todo'
-import { StorageService } from '@/services/storage.service'
-
-// Add proper error typing
-interface TodoError {
-  message: string
-  code?: string
-}
+import { StorageService } from '@/shared/services/storage'
+import type { Todo, TodoState } from '../types/todo'
 
 export const useTodoStore = defineStore('todo', {
   state: (): TodoState => ({
     todos: [],
     isLoading: false,
-    error: null as TodoError | null
+    error: null
   }),
 
   actions: {
-    async loadTodos() {
-      this.isLoading = true
-      this.error = null
-
+    loadTodos() {
       try {
-        this.todos = await StorageService.getTodos()
+        this.isLoading = true
+        this.todos = StorageService.getTodos()
       } catch (error) {
-        this.error = {
-          message: 'Failed to load todos',
-          code: 'LOAD_ERROR'
-        }
-        throw error
+        this.error = 'Failed to load todos'
+        console.error(error)
       } finally {
         this.isLoading = false
       }
     },
 
-    async createTodo(todo: Partial<Todo>) {
+    createTodo(todo: Partial<Todo>) {
       try {
         const newTodo: Todo = {
           id: Date.now(),
           ...todo,
           createdDate: new Date().toLocaleString(),
           lastModifiedDate: new Date().toLocaleString()
-        }
+        } as Todo
 
-        // Optimistic update
         this.todos.push(newTodo)
-
-        // Persist changes
         StorageService.saveTodos(this.todos)
-
-        return newTodo
       } catch (error) {
-        // Rollback on error
-        this.todos = this.todos.filter(t => t.id !== todo.id)
-        throw new Error('Failed to create todo')
+        this.error = 'Failed to create todo'
+        throw error
       }
     },
 
-    async updateTodo(updatedTodo: Todo) {
+    updateTodo(updatedTodo: Todo) {
       try {
         const index = this.todos.findIndex((todo) => todo.id === updatedTodo.id)
-        if (index === -1) throw new Error('Todo not found')
-
-        const oldTodo = this.todos[index]
-
-        // Optimistic update
-        this.todos[index] = {
-          ...updatedTodo,
-          lastModifiedDate: new Date().toLocaleString()
+        if (index !== -1) {
+          this.todos[index] = {
+            ...updatedTodo,
+            lastModifiedDate: new Date().toLocaleString()
+          }
+          StorageService.saveTodos(this.todos)
         }
-
-        // Persist changes
-        StorageService.saveTodos(this.todos)
       } catch (error) {
         this.error = 'Failed to update todo'
         throw error
       }
     },
 
-    async deleteTodo(todoId: number) {
+    deleteTodo(todoId: number) {
       try {
-        const todoToDelete = this.todos.find(todo => todo.id === todoId)
-        if (!todoToDelete) throw new Error('Todo not found')
-
-        // Optimistic update
         this.todos = this.todos.filter((todo) => todo.id !== todoId)
-
-        // Persist changes
         StorageService.saveTodos(this.todos)
       } catch (error) {
         this.error = 'Failed to delete todo'
@@ -101,7 +73,7 @@ export const useTodoStore = defineStore('todo', {
       return state.todos.find((todo) => todo.id === id)
     },
 
-    getTodoColumns: (): TodoColumn[] => [
+    getTodoColumns: () => [
       { key: 'name', label: 'Task' },
       { key: 'description', label: 'Description' },
       { key: 'status', label: 'Status' },

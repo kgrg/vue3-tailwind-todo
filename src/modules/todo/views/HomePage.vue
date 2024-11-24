@@ -29,17 +29,20 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useTodoStore } from '@/stores/todo'
-import DataTable from '@/components/DataTable.vue'
-import BaseModel from '@/components/BaseModal.vue'
-import TodoForm from '@/components/TodoForm.vue'
-import TodoHeader from '@/components/TodoHeader.vue'
-import TodoActionBar from '@/components/TodoActionBar.vue'
+import { useTodoStore } from '@/modules/todo/store'
+import DataTable from '@/modules/todo/components/list/DataTable.vue'
+import BaseModel from '@/shared/components/base/BaseModal.vue'
+import TodoForm from '@/modules/todo/components/form/TodoForm.vue'
+import TodoHeader from '@/modules/todo/components/TodoHeader.vue'
+import TodoActionBar from '@/modules/todo/components/TodoActionBar.vue'
 
-// State
+const todoStore = useTodoStore()
 const isModalOpen = ref(false)
 const selectedTodoId = ref(null)
-const todoStore = useTodoStore()
+
+onMounted(() => {
+  todoStore.loadTodos()
+})
 
 // Computed
 const todos = computed(() => todoStore.getTodoList)
@@ -69,16 +72,6 @@ const handleDeleteTodo = async (id) => {
     // Here you might want to show an error notification
   }
 }
-
-// Lifecycle
-onMounted(async () => {
-  try {
-    await todoStore.loadTodos()
-  } catch (error) {
-    console.error('Failed to load todos:', error)
-    // Here you might want to show an error notification
-  }
-})
 </script>
 
 <style scoped>

@@ -77,7 +77,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, watch, defineProps, defineEmits } from 'vue'
-import { useFocusTrap } from '@/composables/useFocusTrap'
+import { useFocusTrap } from '@/shared/composables/useFocusTrap'
 
 interface ModalProps {
   modalActive: boolean

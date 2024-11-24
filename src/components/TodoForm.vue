@@ -35,10 +35,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useTodoStore } from '@/stores/todo'
-import TodoInput from './Form/TodoInput.vue'
-import TodoTextBox from './Form/TodoTextBox.vue'
-import TodoDropdown from './Form/TodoDropdown.vue'
+import { useTodoStore } from '@/modules/todo/store/todo'
+import TodoInput from '@/modules/todo/components/form/TodoInput.vue'
+import TodoTextBox from '@/modules/todo/components/form/TodoTextBox.vue'
+import TodoDropdown from '@/modules/todo/components/form/TodoDropdown.vue'
 
 // Add TypeScript interface for todo
 interface TodoFormData {
