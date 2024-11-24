@@ -14,16 +14,14 @@
         role="dialog"
         aria-labelledby="modal-title"
         aria-modal="true"
-        @keydown.esc="closeModal"
+        @keydown.esc="handleClose"
       >
-        <div
-          class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0"
-        >
+        <div class="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
           <!-- Backdrop -->
           <div
             class="fixed inset-0 bg-gray-900 bg-opacity-50 transition-opacity dark:bg-opacity-80"
             aria-hidden="true"
-            @click="handleBackdropClick"
+            @click="handleClose"
           ></div>
 
           <!-- Modal panel -->
@@ -32,20 +30,15 @@
             @click.stop
           >
             <!-- Header -->
-            <header
-              class="mb-4 flex items-center justify-between rounded-t border-b pb-4 dark:border-gray-600 sm:mb-5"
-            >
-              <h2
-                id="modal-title"
-                class="text-lg font-semibold text-gray-900 dark:text-white"
-              >
-                <slot name="title">{{ title }}</slot>
+            <header class="mb-4 flex items-center justify-between rounded-t border-b pb-4 dark:border-gray-600 sm:mb-5">
+              <h2 id="modal-title" class="text-lg font-semibold text-gray-900 dark:text-white">
+                {{ modalTitle }}
               </h2>
 
               <button
                 type="button"
                 class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-gray-600 dark:hover:text-white"
-                @click="closeModal"
+                @click="handleClose"
                 aria-label="Close modal"
               >
                 <svg
@@ -76,55 +69,34 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch, defineProps, defineEmits } from 'vue'
+import { watch } from 'vue'
 import { useFocusTrap } from '@/shared/composables/useFocusTrap'
 
-interface ModalProps {
+interface Props {
   modalActive: boolean
-  title?: string
+  modalTitle?: string
 }
 
-interface ModalEmits {
-  'close-modal': () => void
-  'update:modalActive': (value: boolean) => void
-}
-
-const props = withDefaults(defineProps<ModalProps>(), {
-  title: 'Add Task'
+const props = withDefaults(defineProps<Props>(), {
+  modalTitle: 'Modal'
 })
-const emit = defineEmits<ModalEmits>()
 
-const { handleTabKey, initializeFocus, restoreFocus } = useFocusTrap(props.modalActive)
+const emit = defineEmits<{
+  (e: 'close-modal'): void
+}>()
 
-const closeModal = () => {
+const { trapFocus, releaseFocus } = useFocusTrap()
+
+const handleClose = () => {
   emit('close-modal')
-  emit('update:modalActive', false)
 }
 
-const handleBackdropClick = (event: MouseEvent) => {
-  if (event.target === event.currentTarget) {
-    closeModal()
-  }
-}
-
-// Manage modal state
 watch(() => props.modalActive, (newValue) => {
   if (newValue) {
-    initializeFocus()
-    document.body.style.overflow = 'hidden'
+    trapFocus()
   } else {
-    restoreFocus()
-    document.body.style.overflow = ''
+    releaseFocus()
   }
-})
-
-onMounted(() => {
-  document.addEventListener('keydown', handleTabKey)
-})
-
-onUnmounted(() => {
-  document.body.style.overflow = ''
-  document.removeEventListener('keydown', handleTabKey)
 })
 </script>
 

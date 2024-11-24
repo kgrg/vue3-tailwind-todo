@@ -1,44 +1,58 @@
-export const useFocusTrap = (isActive: boolean) => {
-  let previousActiveElement: HTMLElement | null = null
+import { onMounted, onUnmounted } from 'vue'
 
-  const handleTabKey = (event: KeyboardEvent) => {
-    if (!isActive) return
+interface FocusTrapHooks {
+  trapFocus: () => void
+  releaseFocus: () => void
+}
 
-    const modal = document.querySelector('[role="dialog"]')
-    if (!modal) return
+export function useFocusTrap(): FocusTrapHooks {
+  let focusableElements: HTMLElement[] = []
+  let firstFocusableElement: HTMLElement | null = null
+  let lastFocusableElement: HTMLElement | null = null
 
-    const focusableElements = modal.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    )
-    const firstFocusable = focusableElements[0] as HTMLElement
-    const lastFocusable = focusableElements[focusableElements.length - 1] as HTMLElement
+  const handleKeydown = (e: KeyboardEvent): void => {
+    if (e.key !== 'Tab') return
 
-    if (event.key === 'Tab') {
-      if (event.shiftKey && document.activeElement === firstFocusable) {
-        event.preventDefault()
-        lastFocusable.focus()
-      } else if (!event.shiftKey && document.activeElement === lastFocusable) {
-        event.preventDefault()
-        firstFocusable.focus()
+    if (!firstFocusableElement || !lastFocusableElement) return
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus()
+        e.preventDefault()
+      }
+    } else {
+      if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus()
+        e.preventDefault()
       }
     }
   }
 
-  const initializeFocus = () => {
-    previousActiveElement = document.activeElement as HTMLElement
-    setTimeout(() => {
-      const firstFocusable = document.querySelector('[role="dialog"] button') as HTMLElement
-      firstFocusable?.focus()
-    }, 100)
+  const trapFocus = (): void => {
+    focusableElements = Array.from(
+      document.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+    )
+    firstFocusableElement = focusableElements[0]
+    lastFocusableElement = focusableElements[focusableElements.length - 1]
+    document.addEventListener('keydown', handleKeydown)
   }
 
-  const restoreFocus = () => {
-    previousActiveElement?.focus()
+  const releaseFocus = (): void => {
+    document.removeEventListener('keydown', handleKeydown)
   }
+
+  onMounted(() => {
+    trapFocus()
+  })
+
+  onUnmounted(() => {
+    releaseFocus()
+  })
 
   return {
-    handleTabKey,
-    initializeFocus,
-    restoreFocus
+    trapFocus,
+    releaseFocus
   }
 }

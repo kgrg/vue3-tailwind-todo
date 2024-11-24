@@ -1,34 +1,40 @@
+# Vue 3 Task Manager
 
-# 🚀 Vue3 Tailwind CRUD example
+A beginner-friendly task management application built with Vue 3 and Tailwind CSS. Perfect for learning modern web development practices.
 
-## 📚 Overview
+![Application Screenshot](./public/crud.png)
 
-This is a simple CRUD (Create, Read, Update, Delete) application built with Vue.js, Tailwind CSS, the Composition API, and Pinia for state management. It allows you to manage your tasks seamlessly with an intuitive user interface.
-### [Live Demo](https://vue3-tailwind-todo.vercel.app/)
-![Example Image](https://github.com/kirangurung2023/vue3-talwind-todo/blob/main/public/crud.png)
+## 🌟 What You'll Learn
 
-## ✨ Features
+- Building a complete web application with Vue 3
+- Working with components and props
+- Managing application state
+- Handling user interactions
+- Implementing CRUD operations
+- Styling with Tailwind CSS
+- Using TypeScript for better code quality
 
-- 📝 Create, read, update, and delete tasks.
-- 🔄 State management using Pinia.
-- 📱 Responsive design with Tailwind CSS.
-- 🧩 Utilizes Vue.js Composition API for better code organization.
+## 🚀 Live Demo
 
-## 🛠️ Installation
+Try it out: [Live Demo](https://vue3-tailwind-todo.vercel.app/)
 
-1. 📂 Clone the repository: `git clone https://github.com/kirangurung2023/vue3-talwind-todo.git`
-2. 🚀 Navigate into the directory: `cd vue3-tailwind-todo`
-3. 📦 Install the dependencies: `npm install`
-4. 🎉 Start the server: `npm run dev`
+## 🛠️ Built With
 
-## 🧪 Testing (Unit Test)
-1. unit test : `npm run test:unit`
-2. unit test with coverage :  `npm run test:unit --coverage` or `npm run test:unit:coverage`
+- Vue 3 (JavaScript Framework)
+- Tailwind CSS (Styling)
+- TypeScript (Type Safety)
+- Vue Router (Navigation)
+- State Management
+- Vite (Build Tool)
 
-## 🧪 Testing (e2e )
-coming soon.....
+## 📋 Prerequisites
 
-## 🕹️ Usage
+Before you begin, ensure you have installed:
+- Node.js (version 16 or higher)
+- npm (comes with Node.js)
+- Git
 
-After starting the server, navigate to `http://localhost:5173` in your browser. You can now add, view, update, and delete tasks.
+## 🎯 Getting Started
+
+1. Clone the project:
 

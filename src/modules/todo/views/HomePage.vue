@@ -18,16 +18,20 @@
       </div>
     </div>
 
-    <BaseModel :modal-active="isModalOpen" @close-modal="closeModal">
+    <BaseModel
+      :modal-active="isModalOpen"
+      :modal-title="selectedTodoId ? 'Edit Task' : 'Add Task'"
+      @close-modal="closeModal"
+    >
       <TodoForm
         @close-modal="closeModal"
-        v-model:todo-id="selectedTodoId"
+        :todo-id="selectedTodoId"
       />
     </BaseModel>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useTodoStore } from '@/modules/todo/store'
 import DataTable from '@/modules/todo/components/list/DataTable.vue'
@@ -35,41 +39,41 @@ import BaseModel from '@/shared/components/base/BaseModal.vue'
 import TodoForm from '@/modules/todo/components/form/TodoForm.vue'
 import TodoHeader from '@/modules/todo/components/TodoHeader.vue'
 import TodoActionBar from '@/modules/todo/components/TodoActionBar.vue'
+import type { Todo } from '@/modules/todo/types/todo'
 
 const todoStore = useTodoStore()
-const isModalOpen = ref(false)
-const selectedTodoId = ref(null)
+const isModalOpen = ref<boolean>(false)
+const selectedTodoId = ref<number | undefined>(undefined)
 
 onMounted(() => {
   todoStore.loadTodos()
 })
 
 // Computed
-const todos = computed(() => todoStore.getTodoList)
+const todos = computed<Todo[]>(() => todoStore.getTodoList)
 const columns = computed(() => todoStore.getTodoColumns)
 
 // Methods
-const openCreateModal = () => {
-  selectedTodoId.value = null
+const openCreateModal = (): void => {
+  selectedTodoId.value = undefined
   isModalOpen.value = true
 }
 
-const openEditModal = (id) => {
+const openEditModal = (id: number): void => {
   selectedTodoId.value = id
   isModalOpen.value = true
 }
 
-const closeModal = () => {
+const closeModal = (): void => {
   isModalOpen.value = false
-  selectedTodoId.value = null
+  selectedTodoId.value = undefined
 }
 
-const handleDeleteTodo = async (id) => {
+const handleDeleteTodo = async (id: number): Promise<void> => {
   try {
     await todoStore.deleteTodo(id)
   } catch (error) {
     console.error('Failed to delete todo:', error)
-    // Here you might want to show an error notification
   }
 }
 </script>
