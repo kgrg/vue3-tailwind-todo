@@ -4,15 +4,6 @@ A beginner-friendly task management application built with Vue 3 and Tailwind CS
 
 ![Application Screenshot](./public/crud.png)
 
-## 🌟 What You'll Learn
-
-- Building a complete web application with Vue 3
-- Working with components and props
-- Managing application state
-- Handling user interactions
-- Implementing CRUD operations
-- Styling with Tailwind CSS
-- Using TypeScript for better code quality
 
 ## 🚀 Live Demo
 
