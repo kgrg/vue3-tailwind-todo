@@ -1,2 +1,0 @@
-# Create new directory structure
-mkdir -p src/{assets/styles/themes,modules/todo/{__tests__,components/{form,list},services,store,types,views},shared/{components/{__tests__,base,layout},composables,constants,services/{api,storage},utils},i18n/locales,types} 
