@@ -1,20 +1,20 @@
 <template>
-  <div class="max-w-6xl mx-auto px-6 py-8">
-    <div class="flex items-center justify-between mb-8">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-8 lg:py-8">
+    <div class="flex items-center justify-between mb-8 pt-12 lg:pt-0">
       <div>
         <h1 class="text-2xl font-semibold text-gray-900">Today Activities</h1>
         <p class="mt-1 text-sm text-gray-500">Manage your habits, reminders, events, activities.</p>
       </div>
       <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
         <PlusIcon class="w-5 h-5 mr-2" />
-        New Activity
+        <span class="hidden sm:inline">New Activity</span>
       </button>
     </div>
 
     <!-- Habits Section -->
     <section class="mb-8">
       <h2 class="text-lg font-semibold text-gray-900 mb-4">Your Habits</h2>
-      <div class="grid grid-cols-5 gap-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
         <HabitCard
           v-for="habit in sortedHabits"
           :key="habit.id"
@@ -30,20 +30,20 @@
         <div 
           v-for="reminder in reminders" 
           :key="reminder.id"
-          class="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100"
+          class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-white rounded-xl border border-gray-100 gap-3 sm:gap-4"
         >
           <div class="flex items-center space-x-4">
             <div class="flex items-center space-x-2">
-              <component :is="reminder.icon" class="w-5 h-5 text-gray-400" />
+              <component :is="reminder.icon" class="w-5 h-5 text-gray-400 flex-shrink-0" />
               <span class="text-sm font-medium">{{ reminder.category }}</span>
             </div>
             <h3 class="text-sm font-medium text-gray-900">{{ reminder.title }}</h3>
-            <p class="text-sm text-gray-500">{{ reminder.description }}</p>
+            <p class="text-sm text-gray-500 hidden sm:block">{{ reminder.description }}</p>
           </div>
-          <div class="flex items-center">
-            <component :is="reminder.locationIcon" class="w-5 h-5 text-gray-400 mr-2" />
+          <div class="flex items-center justify-end sm:justify-start">
+            <component :is="reminder.locationIcon" class="w-5 h-5 text-gray-400 mr-2 flex-shrink-0" />
             <span class="text-sm text-gray-600">{{ reminder.location }}</span>
-            <span class="mx-4 text-gray-300">|</span>
+            <span class="mx-4 text-gray-300 hidden sm:inline">|</span>
             <span class="text-sm font-medium">{{ reminder.time }}</span>
           </div>
         </div>
