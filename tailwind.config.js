@@ -7,6 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: {
+          500: '#2564CF',
+          600: '#215ABB',
+          700: '#1B4C9E'
+        },
         'todo-blue': '#2564CF',
         'todo-hover': '#215ABB',
         'todo-gray': '#F5F5F5',
