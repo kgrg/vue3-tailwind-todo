@@ -1,0 +1,129 @@
+# Vue 3 Terminology Guide
+
+## Core Concepts
+
+### Components
+- **SFC (Single File Component)**: A `.vue` file containing template, script, and style blocks
+- **Component Instance**: A Vue component that has been mounted and is running in the DOM
+- **Props**: Data passed from parent to child components
+- **Emits**: Events emitted from child to parent components
+- **Slots**: Content injection points in components
+
+### Composition API
+- **Setup Function**: The entry point for Composition API logic
+- **Ref**: Reactive reference to a value
+- **Reactive**: Object that maintains reactive properties
+- **Computed**: Cached value that updates when dependencies change
+- **Watch/WatchEffect**: Reactive effect runners
+- **Lifecycle Hooks**: Functions called at specific points in a component's lifecycle
+
+### State Management
+- **Store**: Centralized state management using Pinia
+- **State**: The data in a store
+- **Getters**: Computed values derived from state
+- **Actions**: Methods that can modify state
+- **Mutations**: (Vue 2 Vuex term, not used in Pinia)
+
+## Common Terms
+
+### Vue Router
+- **Route**: URL pattern and associated component
+- **Router View**: Component that renders matched route components
+- **Router Link**: Component for navigation
+- **Navigation Guard**: Route transition interceptors
+- **Meta Fields**: Additional route configuration data
+
+### Directives
+- **v-if**: Conditional rendering
+- **v-show**: Toggle visibility
+- **v-for**: List rendering
+- **v-model**: Two-way binding
+- **v-bind**: Attribute binding
+- **v-on**: Event binding
+
+### Component Communication
+- **Props Down**: Data flow from parent to child
+- **Events Up**: Communication from child to parent
+- **Provide/Inject**: Dependency injection across component tree
+- **Event Bus**: (Deprecated in Vue 3)
+
+### Reactivity
+- **Reactive Reference**: Value wrapped in a ref
+- **Reactive Object**: Object made reactive with reactive()
+- **Computed Property**: Cached calculated value
+- **Effect**: Side effect that runs when dependencies change
+- **Dependency Tracking**: Automatic tracking of reactive dependencies
+
+### Performance
+- **Lazy Loading**: Loading components on demand
+- **Suspense**: Component for handling async dependencies
+- **Keep-alive**: Component caching mechanism
+- **Virtual DOM**: Virtual representation of UI
+- **Diff Algorithm**: Process of comparing virtual DOM trees
+
+### Testing
+- **Unit Test**: Testing individual components
+- **Component Test**: Testing component behavior
+- **E2E Test**: Testing full user flows
+- **Test Runner**: Tool executing tests (Vitest)
+- **Test Utils**: Utilities for testing (Vue Test Utils)
+
+### Build & Development
+- **Vite**: Build tool and dev server
+- **Hot Module Replacement (HMR)**: Live code updates
+- **Tree-shaking**: Dead code elimination
+- **Code Splitting**: Breaking code into chunks
+- **Source Maps**: Debug assistance tools
+
+## Advanced Concepts
+
+### TypeScript Integration
+- **Type Inference**: Automatic type detection
+- **Type Assertion**: Manual type specification
+- **Generic Components**: Components with type parameters
+- **Type Guards**: Runtime type checking
+- **Utility Types**: Helper types for common patterns
+
+### Composables
+- **Composable Function**: Reusable composition logic
+- **Side Effect**: External system interaction
+- **Cleanup Function**: Resource cleanup logic
+- **Lifecycle Integration**: Hook into component lifecycle
+- **State Sharing**: Share state between composables
+
+### Performance Optimization
+- **Memo**: Memoization of values or components
+- **Dynamic Import**: On-demand code loading
+- **Async Components**: Components loaded asynchronously
+- **Render Function**: Programmatic rendering logic
+- **JSX/TSX**: Alternative to templates
+
+### Error Handling
+- **Error Boundary**: Component error catching
+- **Error Handler**: Global error handling
+- **Loading State**: Component loading indication
+- **Error State**: Component error indication
+- **Recovery Strategy**: Error recovery logic
+
+## Best Practices
+
+### Naming Conventions
+- **PascalCase**: Component names
+- **camelCase**: Method and property names
+- **kebab-case**: Event names
+- **SCREAMING_SNAKE_CASE**: Constants
+- **BEM**: CSS class naming convention
+
+### Code Organization
+- **Feature Modules**: Feature-based code grouping
+- **Shared Components**: Reusable components
+- **Composables**: Shared composition logic
+- **Utils**: Helper functions
+- **Types**: Type definitions
+
+### Component Design
+- **Single Responsibility**: One main purpose per component
+- **Props Interface**: Clear prop definitions
+- **Events Contract**: Clear event definitions
+- **Slot API**: Flexible content injection
+- **Composition**: Component composition over inheritance

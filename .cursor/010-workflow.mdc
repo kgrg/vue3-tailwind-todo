@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Workflow Guidelines
+
+## Development Workflow
+
+### Branch Strategy
+- `main` - Production branch
+- `develop` - Development branch
+- Feature branches: `feature/[feature-name]`
+- Bugfix branches: `bugfix/[bug-description]`
+- Hotfix branches: `hotfix/[fix-description]`
+
+### Development Process
+1. Create a new branch from `develop`
+2. Develop and test your feature
+3. Run linting and tests
+4. Create a Pull Request
+5. Code Review
+6. Merge to develop
+
+### Commit Guidelines
+- Use conventional commits format:
+  - `feat:` for new features
+  - `fix:` for bug fixes
+  - `docs:` for documentation
+  - `style:` for formatting
+  - `refactor:` for code refactoring
+  - `test:` for adding tests
+  - `chore:` for maintenance
+
+### Pull Request Process
+1. Ensure all tests pass
+2. Update relevant documentation
+3. Get at least one code review
+4. Squash commits if necessary
+5. Merge using squash and merge strategy
+
+### Development Environment Setup
+1. Node.js 16+ required
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+4. Run tests: `npm run test`
+5. Run linting: `npm run lint` 

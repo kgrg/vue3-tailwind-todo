@@ -1,0 +1,178 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Testing Guidelines
+
+## Testing Stack
+
+- Vitest: Unit and component testing
+- Vue Test Utils: Component testing utilities
+- Cypress: End-to-end testing
+- MSW (Mock Service Worker): API mocking
+
+## Unit Testing
+
+### Component Testing
+
+```typescript
+import { describe, it, expect } from 'vitest'
+import { mount } from '@vue/test-utils'
+import UserProfile from '@/components/UserProfile.vue'
+
+describe('UserProfile', () => {
+  it('renders user information correctly', () => {
+    const user = {
+      name: 'John Doe',
+      email: 'john@example.com'
+    }
+    
+    const wrapper = mount(UserProfile, {
+      props: {
+        user
+      }
+    })
+    
+    expect(wrapper.text()).toContain(user.name)
+    expect(wrapper.text()).toContain(user.email)
+  })
+  
+  it('emits update event when save button is clicked', async () => {
+    const wrapper = mount(UserProfile)
+    
+    await wrapper.find('button.save').trigger('click')
+    
+    expect(wrapper.emitted('update')).toBeTruthy()
+  })
+})
+```
+
+### Composable Testing
+
+```typescript
+import { describe, it, expect } from 'vitest'
+import { useUser } from '@/composables/useUser'
+import { createPinia, setActivePinia } from 'pinia'
+
+describe('useUser', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
+  it('updates user data', () => {
+    const { user, setUser } = useUser()
+    
+    const newUser = {
+      id: '1',
+      name: 'John'
+    }
+    
+    setUser(newUser)
+    expect(user.value).toEqual(newUser)
+  })
+})
+```
+
+## E2E Testing
+
+### Cypress Test Structure
+
+```typescript
+describe('User Profile', () => {
+  beforeEach(() => {
+    cy.visit('/profile')
+  })
+
+  it('allows user to update their profile', () => {
+    cy.intercept('PUT', '/api/profile', { status: 200 }).as('updateProfile')
+    
+    cy.get('[data-test="name-input"]').type('New Name')
+    cy.get('[data-test="save-button"]').click()
+    
+    cy.wait('@updateProfile')
+    cy.contains('Profile updated successfully')
+  })
+})
+```
+
+## Test Coverage
+
+### Coverage Goals
+- Components: 80% coverage
+- Composables: 90% coverage
+- Utils: 95% coverage
+- Store: 90% coverage
+
+### What to Test
+1. Component rendering
+2. User interactions
+3. Props validation
+4. Event emissions
+5. Error states
+6. Edge cases
+7. Integration with stores
+8. API interactions
+
+### What Not to Test
+1. Implementation details
+2. Third-party libraries
+3. Framework internals
+4. Generated code
+
+## Testing Best Practices
+
+### Component Testing
+- Test the component's public API
+- Use data-test attributes for selectors
+- Test both success and error states
+- Mock complex child components
+- Test accessibility features
+
+### API Testing
+- Mock API calls in unit tests
+- Use MSW for consistent mocking
+- Test error handling
+- Validate request payloads
+- Test loading states
+
+### Store Testing
+- Test actions and mutations
+- Verify state changes
+- Test error handling
+- Mock API calls
+- Test store modules in isolation
+
+## Test Organization
+
+```
+tests/
+├── unit/
+│   ├── components/
+│   │   └── UserProfile.spec.ts
+│   ├── composables/
+│   │   └── useUser.spec.ts
+│   └── store/
+│       └── user.spec.ts
+├── e2e/
+│   ├── profile.cy.ts
+│   └── auth.cy.ts
+└── fixtures/
+    └── user.json
+```
+
+## Running Tests
+
+```bash
+# Run unit tests
+npm run test:unit
+
+# Run e2e tests
+npm run test:e2e
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run specific test file
+npm run test:unit path/to/test.spec.ts
+``` 

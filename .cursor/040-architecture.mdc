@@ -1,0 +1,243 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Architecture Overview
+
+## Technology Stack
+
+### Frontend Core
+- Vue 3
+- TypeScript
+- Vite
+- Vue Router
+- Pinia (State Management)
+- Vue Test Utils & Vitest
+- Cypress
+
+### UI/Styling
+- Tailwind CSS
+- PostCSS
+- SCSS
+- HeadlessUI
+
+### API Integration
+- Axios
+- MSW (Mock Service Worker)
+- OpenAPI/Swagger
+
+## Application Architecture
+
+### Core Principles
+1. Component-Based Architecture
+2. Composition API First
+3. Type Safety
+4. State Management
+5. Dependency Injection
+6. Clean Architecture
+
+### Layer Structure
+
+```
+src/
+├── core/              # Core application logic
+│   ├── api/          # API client and endpoints
+│   ├── config/       # App configuration
+│   ├── types/        # TypeScript types
+│   └── utils/        # Utility functions
+├── features/         # Feature modules
+│   ├── auth/
+│   ├── users/
+│   └── tasks/
+├── shared/          # Shared resources
+│   ├── components/
+│   ├── composables/
+│   └── constants/
+└── infrastructure/  # Technical infrastructure
+    ├── http/
+    ├── storage/
+    └── logging/
+```
+
+## Feature Module Structure
+
+Each feature module follows this structure:
+
+```
+feature/
+├── components/     # Feature-specific components
+├── composables/    # Feature-specific composables
+├── store/          # Feature state management
+├── types/          # Feature-specific types
+├── api/            # Feature API endpoints
+└── utils/          # Feature-specific utilities
+```
+
+## State Management
+
+### Store Structure
+```typescript
+// stores/userStore.ts
+import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    user: null,
+    isLoading: false,
+    error: null
+  }),
+  
+  getters: {
+    isAuthenticated: (state) => !!state.user
+  },
+  
+  actions: {
+    async login(credentials) {
+      this.isLoading = true
+      try {
+        const response = await api.login(credentials)
+        this.user = response.data
+      } catch (error) {
+        this.error = error
+      } finally {
+        this.isLoading = false
+      }
+    }
+  }
+})
+```
+
+## Dependency Injection
+
+### Provide/Inject Pattern
+```typescript
+// providers/api.provider.ts
+import { provide, inject } from 'vue'
+
+export const ApiSymbol = Symbol()
+
+export function provideApi(api) {
+  provide(ApiSymbol, api)
+}
+
+export function useApi() {
+  const api = inject(ApiSymbol)
+  if (!api) throw new Error('API not provided')
+  return api
+}
+```
+
+## Routing
+
+### Route Structure
+```typescript
+// router/index.ts
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      component: () => import('@/views/HomeView.vue'),
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/dashboard',
+      component: () => import('@/views/DashboardView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    }
+  ]
+})
+```
+
+## API Integration
+
+### API Client
+```typescript
+// core/api/client.ts
+import axios from 'axios'
+
+export const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+
+apiClient.interceptors.request.use(config => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+```
+
+## Error Handling
+
+### Global Error Handler
+```typescript
+// infrastructure/error/errorHandler.ts
+import { createErrorHandler } from '@/core/utils/errors'
+
+export const errorHandler = createErrorHandler({
+  onError: (error) => {
+    console.error(error)
+    // Handle error (e.g., show toast, redirect)
+  },
+  
+  transformError: (error) => {
+    // Transform error for display
+    return {
+      message: error.message,
+      code: error.code
+    }
+  }
+})
+```
+
+## Performance Optimization
+
+### Code Splitting
+- Route-based code splitting
+- Component lazy loading
+- Dynamic imports for large dependencies
+
+### Caching Strategy
+- API response caching
+- State persistence
+- Local storage optimization
+
+## Security
+
+### Security Measures
+1. XSS Prevention
+2. CSRF Protection
+3. Content Security Policy
+4. Secure HTTP Headers
+5. Input Validation
+6. Authentication Token Management
+
+## Deployment
+
+### Build Process
+1. Environment configuration
+2. Asset optimization
+3. Code minification
+4. Source maps generation
+5. Bundle analysis
+
+### CI/CD Pipeline
+1. Code linting
+2. Type checking
+3. Unit testing
+4. E2E testing
+5. Build verification
+6. Deployment staging 
