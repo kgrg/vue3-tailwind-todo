@@ -5,11 +5,26 @@
         <h1 class="text-2xl font-semibold text-gray-900">Today Activities</h1>
         <p class="mt-1 text-sm text-gray-500">Manage your habits, reminders, events, activities.</p>
       </div>
-      <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+      <button 
+        @click="isNewActivityModalOpen = true"
+        class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+      >
         <PlusIcon class="w-5 h-5 mr-2" />
         <span class="hidden sm:inline">New Activity</span>
       </button>
     </div>
+
+    <!-- Activities Section -->
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">Today's Activities</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ActivityCard
+          v-for="activity in activityStore.todayActivities"
+          :key="activity.id"
+          v-bind="activity"
+        />
+      </div>
+    </section>
 
     <!-- Habits Section -->
     <section class="mb-8">
@@ -49,17 +64,30 @@
         </div>
       </div>
     </section>
+
+    <!-- New Activity Modal -->
+    <NewActivityModal
+      :is-open="isNewActivityModalOpen"
+      @close="isNewActivityModalOpen = false"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { PlusIcon, BriefcaseIcon, AcademicCapIcon, MapPinIcon } from '@heroicons/vue/24/outline'
 import { storeToRefs } from 'pinia'
 import { useHabitStore } from '@/modules/habits/store/habits.store'
+import { useActivityStore } from '@/modules/activities/store/activities.store'
 import HabitCard from '@/modules/habits/components/HabitCard.vue'
+import ActivityCard from '@/modules/activities/components/ActivityCard.vue'
+import NewActivityModal from '@/modules/activities/components/NewActivityModal.vue'
 
 const habitStore = useHabitStore()
+const activityStore = useActivityStore()
 const { sortedHabits } = storeToRefs(habitStore)
+
+const isNewActivityModalOpen = ref(false)
 
 const reminders = [
   {

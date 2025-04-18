@@ -108,7 +108,8 @@ import {
   ArchiveBoxIcon,
   ChartBarIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  ClipboardDocumentListIcon
 } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
@@ -132,6 +133,11 @@ const topNavItems = [
     path: '/today',
     label: 'Today',
     icon: CalendarDaysIcon
+  },
+  {
+    path: '/activities',
+    label: 'Activities',
+    icon: ClipboardDocumentListIcon
   },
   {
     path: '/tomorrow',

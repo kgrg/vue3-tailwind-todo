@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
 # Project Structure (Feature Sliced Design)
 
 ## Directory Structure
