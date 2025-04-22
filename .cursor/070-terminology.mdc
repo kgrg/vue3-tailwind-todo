@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
 # Vue 3 Terminology Guide
 
 ## Core Concepts

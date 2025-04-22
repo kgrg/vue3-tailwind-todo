@@ -5,6 +5,7 @@ import LoginPage from '@/modules/auth/pages/LoginPage.vue'
 import { useAuthStore } from '@/modules/auth/store/auth.store'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import ActivityListView from '@/views/ActivityListView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -21,6 +22,11 @@ const routes: RouteRecordRaw[] = [
         path: 'today',
         name: 'today',
         component: TodayView
+      },
+      {
+        path: 'activities',
+        name: 'activities',
+        component: ActivityListView
       },
       {
         path: 'tomorrow',
