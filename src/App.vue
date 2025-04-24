@@ -1,5 +1,4 @@
 <script setup>
-import AppSidebar from '@/layouts/AppSidebar.vue'
 </script>
 
 <template>

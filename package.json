@@ -11,8 +11,10 @@
   "dependencies": {
     "@headlessui/vue": "1.7.23",
     "@heroicons/vue": "2.2.0",
+    "@tailwindcss/vite": "4.1.4",
     "heroicons": "2.2.0",
     "pinia": "^2.1.7",
+    "ts-node": "10.9.2",
     "uuid": "11.1.0",
     "vue": "^3.4.21",
     "vue-router": "4.5.0"
@@ -20,9 +22,7 @@
   "devDependencies": {
     "@types/node": "22.14.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "autoprefixer": "^10.4.18",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^4.1.4",
     "vite": "^5.1.6"
   }
 }
