@@ -65,7 +65,7 @@
       <button
         type="submit"
         :disabled="loading"
-        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-todo-blue hover:bg-todo-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-todo-blue disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#2564CF] hover:bg-[#215ABB] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2564CF] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <SpinnerIcon v-if="loading" class="animate-spin -ml-1 mr-2 h-5 w-5" />
         {{ loading ? 'Signing in...' : 'Sign in' }}
