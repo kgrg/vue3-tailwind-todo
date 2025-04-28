@@ -1,55 +1,46 @@
 <template>
-  <div
-    class="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-  >
-    <button
-      type="button"
-      class="flex-shrink-0 w-5 h-5 rounded-full border-2 transition-colors duration-200"
-      :class="[
-        isCompleted
-          ? 'bg-blue-500 border-blue-500'
-          : 'border-gray-300 hover:border-blue-500'
-      ]"
-      @click="$emit('toggle-complete')"
-    >
-      <CheckIcon
-        v-if="isCompleted"
-        class="w-full h-full text-white p-0.5"
-      />
-    </button>
-
-    <div class="flex-1 min-w-0">
-      <div class="flex items-center gap-2">
-        <span
-          class="text-sm font-medium"
-          :class="{ 'line-through text-gray-400': isCompleted }"
-        >
-          {{ title }}
-        </span>
-        <span
-          v-if="tag"
-          class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium"
-          :class="`bg-${tag.color}-100 text-${tag.color}-800`"
-        >
-          {{ tag.label }}
-        </span>
-      </div>
-      
-      <div
-        v-if="description || dueDate"
-        class="mt-1 text-sm text-gray-500"
+  <BaseListItem>
+    <template #leading>
+      <button
+        type="button"
+        class="flex-shrink-0 w-5 h-5 rounded-full border-2 transition-colors duration-200"
+        :class="[
+          isCompleted
+            ? 'bg-blue-500 border-blue-500'
+            : 'border-gray-300 hover:border-blue-500'
+        ]"
+        @click="$emit('toggle-complete')"
       >
-        <p v-if="description" class="line-clamp-1">
-          {{ description }}
-        </p>
-        <p v-if="dueDate" class="flex items-center gap-1 mt-0.5">
-          <CalendarIcon class="w-4 h-4" />
-          <span>{{ formatDate(dueDate) }}</span>
-        </p>
-      </div>
-    </div>
+        <CheckIcon
+          v-if="isCompleted"
+          class="w-full h-full text-white p-0.5"
+        />
+      </button>
+    </template>
 
-    <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <template #title>
+      <span
+        class="text-sm font-medium"
+        :class="{ 'line-through text-gray-400': isCompleted }"
+      >
+        {{ title }}
+      </span>
+      <BaseTag v-if="tag" :color="tag.color">
+        {{ tag.label }}
+      </BaseTag>
+    </template>
+
+    <template #description>
+      <p v-if="description" class="line-clamp-1">
+        {{ description }}
+      </p>
+      <p v-if="dueDate" class="flex items-center gap-1 mt-0.5">
+        <CalendarIcon class="w-4 h-4" />
+        <span>{{ formatDate(dueDate) }}</span>
+      </p>
+    </template>
+
+    <template #actions>
       <button
         v-if="!isCompleted"
         type="button"
@@ -75,8 +66,8 @@
       >
         <TrashIcon class="w-5 h-5" />
       </button>
-    </div>
-  </div>
+    </template>
+  </BaseListItem>
 </template>
 
 <script setup>
@@ -87,6 +78,8 @@ import {
   PencilIcon,
   TrashIcon
 } from '@/components/icons'
+import BaseListItem from '@/core/components/BaseListItem.vue'
+import BaseTag from '@/core/components/BaseTag.vue'
 
 const props = defineProps({
   title: {

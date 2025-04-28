@@ -1,36 +1,23 @@
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-6">
-    <div>
-      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-      <div class="mt-1 relative">
-        <input
-          id="email"
-          v-model="form.email"
-          type="email"
-          required
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-          :class="{ 'border-red-300': errors.email }"
-          placeholder="Enter your email"
-        />
-        <div v-if="errors.email" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-          <ExclamationCircleIcon class="h-5 w-5 text-red-500" />
-        </div>
-      </div>
-      <p v-if="errors.email" class="mt-2 text-sm text-red-600">{{ errors.email }}</p>
-    </div>
+    <BaseInput
+      v-model="form.email"
+      type="email"
+      label="Email"
+      required
+      placeholder="Enter your email"
+      :error="errors.email"
+    />
 
-    <div>
-      <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-      <div class="mt-1 relative">
-        <input
-          id="password"
-          v-model="form.password"
-          :type="showPassword ? 'text' : 'password'"
-          required
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-          :class="{ 'border-red-300': errors.password }"
-          placeholder="Enter your password"
-        />
+    <BaseInput
+      v-model="form.password"
+      :type="showPassword ? 'text' : 'password'"
+      label="Password"
+      required
+      placeholder="Enter your password"
+      :error="errors.password"
+    >
+      <template #right-icon>
         <button
           type="button"
           @click="showPassword = !showPassword"
@@ -39,20 +26,14 @@
           <EyeIcon v-if="showPassword" class="h-5 w-5 text-gray-400" />
           <EyeSlashIcon v-else class="h-5 w-5 text-gray-400" />
         </button>
-      </div>
-      <p v-if="errors.password" class="mt-2 text-sm text-red-600">{{ errors.password }}</p>
-    </div>
+      </template>
+    </BaseInput>
 
     <div class="flex items-center justify-between">
-      <div class="flex items-center">
-        <input
-          id="remember"
-          v-model="form.remember"
-          type="checkbox"
-          class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-        />
-        <label for="remember" class="ml-2 block text-sm text-gray-900">Remember me</label>
-      </div>
+      <BaseCheckbox
+        v-model="form.remember"
+        label="Remember me"
+      />
 
       <div class="text-sm">
         <router-link to="/forgot-password" class="font-medium text-primary-600 hover:text-primary-500">
@@ -78,8 +59,10 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../store/auth.store'
-import { ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline'
 import SpinnerIcon from '@/core/icons/SpinnerIcon.vue'
+import BaseInput from '@/core/components/BaseInput.vue'
+import BaseCheckbox from '@/core/components/BaseCheckbox.vue'
 import type { LoginCredentials } from '../types'
 
 const router = useRouter()

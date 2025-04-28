@@ -29,82 +29,66 @@
                 New Activity
               </DialogTitle>
 
-              <form @submit.prevent="handleSubmit" class="mt-4 space-y-4">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Title</label>
-                  <input
-                    type="text"
-                    v-model="form.title"
-                    required
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
+              <form @submit.prevent="handleSubmit" class="mt-4 space-y-6">
+                <BaseInput
+                  v-model="form.title"
+                  label="Title"
+                  required
+                  placeholder="Enter activity title"
+                />
 
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Description</label>
-                  <textarea
-                    v-model="form.description"
-                    rows="3"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  ></textarea>
-                </div>
+                <BaseTextarea
+                  v-model="form.description"
+                  label="Description"
+                  :rows="3"
+                  placeholder="Enter activity description"
+                />
 
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Category</label>
-                  <select
-                    v-model="form.category"
-                    required
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  >
-                    <option value="Work">Work</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Learning">Learning</option>
-                    <option value="Health">Health</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                <BaseSelect
+                  v-model="form.category"
+                  label="Category"
+                  :options="[
+                    { value: 'Work', label: 'Work' },
+                    { value: 'Personal', label: 'Personal' },
+                    { value: 'Learning', label: 'Learning' },
+                    { value: 'Health', label: 'Health' },
+                    { value: 'Other', label: 'Other' }
+                  ]"
+                  required
+                />
 
                 <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700">Date</label>
-                    <input
-                      type="date"
-                      v-model="form.date"
-                      required
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700">Time</label>
-                    <input
-                      type="time"
-                      v-model="form.time"
-                      required
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700">Location (Optional)</label>
-                  <input
-                    type="text"
-                    v-model="form.location"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  <BaseInput
+                    v-model="form.date"
+                    type="date"
+                    label="Date"
+                    required
+                  />
+                  <BaseInput
+                    v-model="form.time"
+                    type="time"
+                    label="Time"
+                    required
                   />
                 </div>
+
+                <BaseInput
+                  v-model="form.location"
+                  label="Location (Optional)"
+                  placeholder="Enter location"
+                />
 
                 <div class="mt-6 flex justify-end space-x-3">
                   <button
                     type="button"
                     @click="closeModal"
-                    class="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                    class="rounded-lg bg-[#2564CF] px-4 py-2 text-sm font-medium text-white hover:bg-[#215ABB] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2564CF]"
                   >
                     Add Activity
                   </button>
@@ -123,6 +107,9 @@ import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useActivityStore } from '../store/activities.store'
 import type { NewActivityForm } from '../types/activity.types'
+import BaseInput from '@/core/components/BaseInput.vue'
+import BaseTextarea from '@/core/components/BaseTextarea.vue'
+import BaseSelect from '@/core/components/BaseSelect.vue'
 
 const props = defineProps<{
   isOpen: boolean
@@ -139,7 +126,7 @@ const form = ref<NewActivityForm>({
   description: '',
   category: 'Work',
   date: new Date().toISOString().split('T')[0],
-  time: '',
+  time: '12:00',
   location: ''
 })
 
@@ -156,7 +143,7 @@ const handleSubmit = () => {
     description: '',
     category: 'Work',
     date: new Date().toISOString().split('T')[0],
-    time: '',
+    time: '12:00',
     location: ''
   }
 }
