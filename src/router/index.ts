@@ -6,17 +6,17 @@ import { useAuthStore } from '@/modules/auth/store/auth.store'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import ActivityListView from '@/views/ActivityListView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: DashboardLayout,
-    meta: { requiresAuth: true },
     children: [
       {
         path: '',
-        name: 'all-day',
-        component: TodayView
+        name: 'dashboard',
+        component: DashboardView
       },
       {
         path: 'today',
@@ -24,49 +24,39 @@ const routes: RouteRecordRaw[] = [
         component: TodayView
       },
       {
+        path: 'upcoming',
+        name: 'upcoming',
+        component: ActivityListView
+      },
+      {
         path: 'activities',
         name: 'activities',
         component: ActivityListView
       },
       {
-        path: 'tomorrow',
-        name: 'tomorrow',
-        component: TodayView
+        path: 'categories/:category',
+        name: 'category',
+        component: ActivityListView
       },
       {
-        path: 'next7days',
-        name: 'next7days',
-        component: TodayView
+        path: 'tags/:tag',
+        name: 'tag',
+        component: ActivityListView
       },
       {
-        path: 'inbox',
-        name: 'inbox',
-        component: TodayView
+        path: 'completed',
+        name: 'completed',
+        component: ActivityListView
       },
       {
-        path: 'work',
-        name: 'work',
-        component: TodayView
+        path: 'analytics',
+        name: 'analytics',
+        component: DashboardView
       },
       {
-        path: 'freelance',
-        name: 'freelance',
-        component: TodayView
-      },
-      {
-        path: 'workout',
-        name: 'workout',
-        component: TodayView
-      },
-      {
-        path: 'learning',
-        name: 'learning',
-        component: TodayView
-      },
-      {
-        path: 'reading',
-        name: 'reading',
-        component: TodayView
+        path: 'settings',
+        name: 'settings',
+        component: ActivityListView
       }
     ]
   },

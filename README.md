@@ -25,6 +25,13 @@ TaskFlow is a comprehensive activity management application built with Vue 3 and
 - **Progress Tracking:** Monitor your completion rates and activity patterns
 - **Responsive Design:** Works seamlessly on desktop and mobile devices
 
+## Screenshots
+
+### Dashboard Overview
+
+![Dashboard Screenshot](docs/dashboard.png)
+<p align="center"><i>The modern dashboard provides a visual overview of your activities, completion rates, category distribution, and productivity trends.</i></p>
+
 ## Built with
 
 - [Vue 3](https://vuejs.org/) - The Progressive JavaScript Framework

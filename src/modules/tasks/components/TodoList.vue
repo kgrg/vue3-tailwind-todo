@@ -23,42 +23,49 @@
       </div>
 
       <div class="space-y-2">
-        <div
+        <BaseListItem
           v-for="todo in filteredTodos"
           :key="todo.id"
-          class="group p-4 hover:bg-todo-gray rounded-lg flex items-center space-x-4 transition-colors duration-200"
+          customClass="hover:bg-todo-gray"
         >
-          <button
-            @click="toggleTodo(todo.id)"
-            :class="[
-              'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200',
-              todo.completed
-                ? 'bg-todo-blue border-todo-blue'
-                : 'border-gray-300 hover:border-todo-blue'
-            ]"
-          >
-            <span v-if="todo.completed" class="text-white text-sm">✓</span>
-          </button>
-          
-          <div class="flex-1 min-w-0">
+          <template #leading>
+            <button
+              @click="toggleTodo(todo.id)"
+              :class="[
+                'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200',
+                todo.completed
+                  ? 'bg-todo-blue border-todo-blue'
+                  : 'border-gray-300 hover:border-todo-blue'
+              ]"
+            >
+              <span v-if="todo.completed" class="text-white text-sm">✓</span>
+            </button>
+          </template>
+
+          <template #title>
             <p :class="[
               'text-gray-700 truncate',
               todo.completed && 'line-through text-gray-400'
             ]">
               {{ todo.title }}
             </p>
-            <p v-if="todo.dueDate" class="text-sm text-gray-500 mt-0.5">
+          </template>
+
+          <template #description>
+            <p v-if="todo.dueDate" class="text-sm text-gray-500">
               Due {{ new Date(todo.dueDate).toLocaleDateString() }}
             </p>
-          </div>
+          </template>
 
-          <button
-            @click="toggleImportant(todo.id)"
-            class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-yellow-500 transition-opacity duration-200"
-          >
-            <span class="text-xl">{{ todo.important ? '⭐' : '☆' }}</span>
-          </button>
-        </div>
+          <template #actions>
+            <button
+              @click="toggleImportant(todo.id)"
+              class="text-gray-400 hover:text-yellow-500"
+            >
+              <span class="text-xl">{{ todo.important ? '⭐' : '☆' }}</span>
+            </button>
+          </template>
+        </BaseListItem>
       </div>
     </div>
   </main>
@@ -68,6 +75,7 @@
 import { ref, computed } from 'vue'
 import { useTodoStore } from '../stores/todoStore'
 import { storeToRefs } from 'pinia'
+import BaseListItem from '@/core/components/BaseListItem.vue'
 
 const todoStore = useTodoStore()
 const { filteredTodos, lists, activeList } = storeToRefs(todoStore)
@@ -83,8 +91,9 @@ const activeListName = computed(() => {
 const addNewTodo = () => {
   if (newTodoTitle.value.trim()) {
     addTodo({
-      title: newTodoTitle.value.trim(),
-      listId: activeList.value
+      title: newTodoTitle.value,
+      completed: false,
+      important: false
     })
     newTodoTitle.value = ''
   }

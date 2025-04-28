@@ -126,7 +126,7 @@ const isActive = (path: string): boolean => {
 const topNavItems = [
   {
     path: '/',
-    label: 'All day',
+    label: 'Dashboard',
     icon: HomeIcon
   },
   {
@@ -135,83 +135,62 @@ const topNavItems = [
     icon: CalendarDaysIcon
   },
   {
-    path: '/activities',
-    label: 'Activities',
-    icon: ClipboardDocumentListIcon
-  },
-  {
-    path: '/tomorrow',
-    label: 'Tomorrow',
+    path: '/upcoming',
+    label: 'Upcoming',
     icon: ClockIcon
   },
   {
-    path: '/next7days',
-    label: 'Next 7 days',
-    icon: CalendarDaysIcon
-  },
-  {
-    path: '/inbox',
-    label: 'Inbox',
-    icon: InboxIcon
+    path: '/activities',
+    label: 'All Activities',
+    icon: ClipboardDocumentListIcon
   }
 ]
 
 const listItems = [
   {
-    path: '/work',
+    path: '/categories/work',
     label: 'Work',
     icon: BriefcaseIcon
   },
   {
-    path: '/freelance',
-    label: 'Freelance',
-    icon: UserGroupIcon
+    path: '/categories/personal',
+    label: 'Personal',
+    icon: UserIcon
   },
   {
-    path: '/workout',
-    label: 'Workout',
+    path: '/categories/health',
+    label: 'Health & Fitness',
     icon: RocketLaunchIcon
   },
   {
-    path: '/learning',
+    path: '/categories/learning',
     label: 'Learning',
-    icon: BookOpenIcon
-  },
-  {
-    path: '/reading',
-    label: 'Reading',
     icon: BookOpenIcon
   }
 ]
 
 const tagItems = [
   {
-    path: '/tags/work',
-    label: 'work',
+    path: '/tags/priority',
+    label: 'Priority',
     icon: TagIcon,
-    color: 'gray'
+    color: 'red'
   },
   {
-    path: '/tags/uxresearch',
-    label: 'uxresearch',
+    path: '/tags/meeting',
+    label: 'Meetings',
     icon: TagIcon,
     color: 'blue'
   },
   {
-    path: '/tags/inspiration',
-    label: 'inspiration',
-    icon: TagIcon,
-    color: 'pink'
-  },
-  {
-    path: '/tags/meeting',
-    label: 'meeting',
+    path: '/tags/deadline',
+    label: 'Deadlines',
     icon: TagIcon,
     color: 'purple'
   },
   {
-    path: '/tags/designteam',
-    label: 'designteam',
+    path: '/tags/errand',
+    label: 'Errands',
     icon: TagIcon,
     color: 'green'
   }
@@ -224,14 +203,14 @@ const bottomNavItems = [
     icon: ArchiveBoxIcon
   },
   {
-    path: '/trash',
-    label: 'Trash',
-    icon: ArchiveBoxIcon
+    path: '/analytics',
+    label: 'Analytics',
+    icon: ChartBarIcon
   },
   {
-    path: '/summary',
-    label: 'Summary',
-    icon: ChartBarIcon
+    path: '/settings',
+    label: 'Settings',
+    icon: Cog6ToothIcon
   }
 ]
 </script> 
