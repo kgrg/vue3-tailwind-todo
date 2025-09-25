@@ -30,6 +30,7 @@ TaskFlow is a comprehensive activity management application built with Vue 3 and
 ### Dashboard Overview
 
 ![Dashboard Screenshot](image.png)
+
 <p align="center"><i>The modern dashboard provides a visual overview of your activities, completion rates, category distribution, and productivity trends.</i></p>
 
 ## Built with
@@ -50,22 +51,26 @@ TaskFlow is a comprehensive activity management application built with Vue 3 and
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/justdo-vue.git
 cd justdo-vue
 ```
 
 2. Install dependencies
+
 ```bash
 pnpm install
 ```
 
 3. Start the development server
+
 ```bash
 pnpm dev
 ```
 
 4. Build for production
+
 ```bash
 pnpm build
 ```
@@ -92,4 +97,3 @@ src/
 5. Open a Pull Request
 
 ## License
-

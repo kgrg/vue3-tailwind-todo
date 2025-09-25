@@ -11,13 +11,15 @@
       <div class="flex items-center gap-2">
         <slot name="title"></slot>
       </div>
-      
+
       <div class="mt-1 text-sm text-gray-500">
         <slot name="description"></slot>
       </div>
     </div>
 
-    <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <div
+      class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+    >
       <slot name="actions"></slot>
     </div>
   </div>
@@ -27,4 +29,4 @@
 defineProps<{
   customClass?: string
 }>()
-</script> 
+</script>

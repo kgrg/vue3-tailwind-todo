@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-semibold text-gray-900">All Activities</h1>
         <p class="mt-1 text-sm text-gray-500">View and manage all your activities</p>
       </div>
-      <button 
+      <button
         @click="isNewActivityModalOpen = true"
         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
       >
@@ -26,7 +26,7 @@
             { value: 'Personal', label: 'Personal' },
             { value: 'Learning', label: 'Learning' },
             { value: 'Health', label: 'Health' },
-            { value: 'Other', label: 'Other' }
+            { value: 'Other', label: 'Other' },
           ]"
         />
         <BaseSelect
@@ -35,7 +35,7 @@
           :options="[
             { value: '', label: 'All Status' },
             { value: 'completed', label: 'Completed' },
-            { value: 'pending', label: 'Pending' }
+            { value: 'pending', label: 'Pending' },
           ]"
         />
         <BaseInput
@@ -78,14 +78,14 @@
           customClass="bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
         >
           <template #leading>
-            <div 
+            <div
               class="w-3 h-3 mt-1.5 rounded-full flex-shrink-0"
               :class="{
                 'bg-blue-500': activity.category === 'Work',
                 'bg-green-500': activity.category === 'Personal',
                 'bg-purple-500': activity.category === 'Learning',
                 'bg-red-500': activity.category === 'Health',
-                'bg-gray-500': activity.category === 'Other'
+                'bg-gray-500': activity.category === 'Other',
               }"
             ></div>
           </template>
@@ -117,15 +117,16 @@
               <button
                 @click="toggleActivityStatus(activity.id)"
                 class="inline-flex items-center px-2.5 py-1.5 text-sm font-medium rounded-md"
-                :class="activity.status === 'completed' ? 'text-green-700 bg-green-50 hover:bg-green-100' : 'text-gray-700 bg-gray-50 hover:bg-gray-100'"
+                :class="
+                  activity.status === 'completed'
+                    ? 'text-green-700 bg-green-50 hover:bg-green-100'
+                    : 'text-gray-700 bg-gray-50 hover:bg-gray-100'
+                "
               >
                 <CheckIcon v-if="activity.status === 'completed'" class="w-4 h-4 mr-1" />
                 {{ activity.status === 'completed' ? 'Completed' : 'Mark Complete' }}
               </button>
-              <button
-                @click="deleteActivity(activity.id)"
-                class="text-gray-400 hover:text-red-500"
-              >
+              <button @click="deleteActivity(activity.id)" class="text-gray-400 hover:text-red-500">
                 <TrashIcon class="w-5 h-5" />
               </button>
             </div>
@@ -135,23 +136,20 @@
     </div>
 
     <!-- New Activity Modal -->
-    <NewActivityModal
-      :is-open="isNewActivityModalOpen"
-      @close="isNewActivityModalOpen = false"
-    />
+    <NewActivityModal :is-open="isNewActivityModalOpen" @close="isNewActivityModalOpen = false" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { 
-  PlusIcon, 
-  CalendarIcon, 
-  ClockIcon, 
-  MapPinIcon, 
-  CheckIcon, 
+import {
+  PlusIcon,
+  CalendarIcon,
+  ClockIcon,
+  MapPinIcon,
+  CheckIcon,
   TrashIcon,
-  DocumentIcon 
+  DocumentIcon,
 } from '@heroicons/vue/24/outline'
 import { useActivityStore } from '@/modules/activities/store/activities.store'
 import NewActivityModal from '@/modules/activities/components/NewActivityModal.vue'
@@ -166,7 +164,7 @@ const isNewActivityModalOpen = ref(false)
 const filters = ref({
   category: '',
   status: '',
-  search: ''
+  search: '',
 })
 
 const sortBy = ref<'date' | 'category' | 'status'>('date')
@@ -175,7 +173,8 @@ const filteredActivities = computed(() => {
   return activityStore.activities.filter(activity => {
     const matchesCategory = !filters.value.category || activity.category === filters.value.category
     const matchesStatus = !filters.value.status || activity.status === filters.value.status
-    const matchesSearch = !filters.value.search || 
+    const matchesSearch =
+      !filters.value.search ||
       activity.title.toLowerCase().includes(filters.value.search.toLowerCase()) ||
       activity.description.toLowerCase().includes(filters.value.search.toLowerCase())
     return matchesCategory && matchesStatus && matchesSearch
@@ -201,7 +200,7 @@ const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 
@@ -218,4 +217,4 @@ const toggleActivityStatus = (id: string) => {
 const deleteActivity = (id: string) => {
   activityStore.deleteActivity(id)
 }
-</script> 
+</script>

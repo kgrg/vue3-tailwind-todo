@@ -2,8 +2,8 @@
   <BaseCard customClass="group cursor-pointer">
     <template #content>
       <div class="relative aspect-square rounded-2xl overflow-hidden bg-gray-100 mb-2">
-        <img 
-          :src="`/images/${image}`" 
+        <img
+          :src="`/images/${image}`"
           :alt="title"
           class="w-full h-full object-cover transition-transform group-hover:scale-105"
         />
@@ -29,4 +29,4 @@ const props = defineProps<{
 const formatTime = (time: string): string => {
   return time.replace(':', '.')
 }
-</script> 
+</script>

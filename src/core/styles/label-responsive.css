@@ -1,0 +1,530 @@
+/**
+ * Label Responsive Styles
+ * Responsive design implementation for label components
+ */
+
+/* Base responsive utilities */
+.label-responsive {
+  @apply w-full;
+}
+
+/* Mobile-first approach */
+@media (max-width: 640px) {
+  .label-chip {
+    @apply text-xs px-2 py-1;
+  }
+
+  .label-picker {
+    @apply text-sm;
+  }
+
+  .label-dialog {
+    @apply max-w-sm mx-4;
+  }
+
+  .label-management {
+    @apply p-4;
+  }
+
+  .label-filter {
+    @apply flex-col space-y-2;
+  }
+
+  .label-filter-dropdown {
+    @apply w-full;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .label-chip {
+    @apply text-sm px-3 py-1.5;
+  }
+
+  .label-picker {
+    @apply text-base;
+  }
+
+  .label-dialog {
+    @apply max-w-md;
+  }
+
+  .label-management {
+    @apply p-6;
+  }
+
+  .label-filter {
+    @apply flex-row items-center space-x-4;
+  }
+
+  .label-filter-dropdown {
+    @apply w-80;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .label-chip {
+    @apply text-sm px-3 py-1.5;
+  }
+
+  .label-picker {
+    @apply text-base;
+  }
+
+  .label-dialog {
+    @apply max-w-lg;
+  }
+
+  .label-management {
+    @apply p-8;
+  }
+
+  .label-filter {
+    @apply flex-row items-center space-x-4;
+  }
+
+  .label-filter-dropdown {
+    @apply w-96;
+  }
+}
+
+/* Label chip responsive variants */
+.label-chip-sm {
+  @apply text-xs px-1.5 py-0.5;
+}
+
+.label-chip-md {
+  @apply text-sm px-2 py-1;
+}
+
+.label-chip-lg {
+  @apply text-base px-3 py-1.5;
+}
+
+/* Label picker responsive variants */
+.label-picker-sm {
+  @apply text-sm;
+}
+
+.label-picker-md {
+  @apply text-base;
+}
+
+.label-picker-lg {
+  @apply text-lg;
+}
+
+/* Label dialog responsive variants */
+.label-dialog-sm {
+  @apply max-w-sm;
+}
+
+.label-dialog-md {
+  @apply max-w-md;
+}
+
+.label-dialog-lg {
+  @apply max-w-lg;
+}
+
+/* Label management responsive grid */
+.label-grid {
+  @apply grid gap-4;
+}
+
+@media (max-width: 640px) {
+  .label-grid {
+    @apply grid-cols-1;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .label-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 1025px) {
+  .label-grid {
+    @apply grid-cols-3;
+  }
+}
+
+/* Label filter responsive layout */
+.label-filter-mobile {
+  @apply flex-col space-y-2;
+}
+
+.label-filter-desktop {
+  @apply flex-row items-center space-x-4;
+}
+
+@media (max-width: 640px) {
+  .label-filter {
+    @apply label-filter-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-filter {
+    @apply label-filter-desktop;
+  }
+}
+
+/* Label search responsive */
+.label-search-mobile {
+  @apply w-full;
+}
+
+.label-search-desktop {
+  @apply w-80;
+}
+
+@media (max-width: 640px) {
+  .label-search {
+    @apply label-search-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-search {
+    @apply label-search-desktop;
+  }
+}
+
+/* Label options responsive */
+.label-options-mobile {
+  @apply max-h-48;
+}
+
+.label-options-desktop {
+  @apply max-h-60;
+}
+
+@media (max-width: 640px) {
+  .label-options {
+    @apply label-options-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-options {
+    @apply label-options-desktop;
+  }
+}
+
+/* Label stats responsive */
+.label-stats-mobile {
+  @apply text-xs;
+}
+
+.label-stats-desktop {
+  @apply text-sm;
+}
+
+@media (max-width: 640px) {
+  .label-stats {
+    @apply label-stats-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-stats {
+    @apply label-stats-desktop;
+  }
+}
+
+/* Label actions responsive */
+.label-actions-mobile {
+  @apply flex-col space-y-2;
+}
+
+.label-actions-desktop {
+  @apply flex-row space-x-2;
+}
+
+@media (max-width: 640px) {
+  .label-actions {
+    @apply label-actions-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-actions {
+    @apply label-actions-desktop;
+  }
+}
+
+/* Label form responsive */
+.label-form-mobile {
+  @apply space-y-4;
+}
+
+.label-form-desktop {
+  @apply space-y-6;
+}
+
+@media (max-width: 640px) {
+  .label-form {
+    @apply label-form-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-form {
+    @apply label-form-desktop;
+  }
+}
+
+/* Label color picker responsive */
+.label-color-picker-mobile {
+  @apply grid-cols-4 gap-2;
+}
+
+.label-color-picker-desktop {
+  @apply grid-cols-8 gap-2;
+}
+
+@media (max-width: 640px) {
+  .label-color-picker {
+    @apply label-color-picker-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-color-picker {
+    @apply label-color-picker-desktop;
+  }
+}
+
+/* Label validation responsive */
+.label-validation-mobile {
+  @apply text-xs;
+}
+
+.label-validation-desktop {
+  @apply text-sm;
+}
+
+@media (max-width: 640px) {
+  .label-validation {
+    @apply label-validation-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-validation {
+    @apply label-validation-desktop;
+  }
+}
+
+/* Label loading responsive */
+.label-loading-mobile {
+  @apply h-4 w-4;
+}
+
+.label-loading-desktop {
+  @apply h-6 w-6;
+}
+
+@media (max-width: 640px) {
+  .label-loading {
+    @apply label-loading-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-loading {
+    @apply label-loading-desktop;
+  }
+}
+
+/* Label empty state responsive */
+.label-empty-mobile {
+  @apply py-8;
+}
+
+.label-empty-desktop {
+  @apply py-12;
+}
+
+@media (max-width: 640px) {
+  .label-empty {
+    @apply label-empty-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-empty {
+    @apply label-empty-desktop;
+  }
+}
+
+/* Label error state responsive */
+.label-error-mobile {
+  @apply p-3;
+}
+
+.label-error-desktop {
+  @apply p-4;
+}
+
+@media (max-width: 640px) {
+  .label-error {
+    @apply label-error-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-error {
+    @apply label-error-desktop;
+  }
+}
+
+/* Label success state responsive */
+.label-success-mobile {
+  @apply p-3;
+}
+
+.label-success-desktop {
+  @apply p-4;
+}
+
+@media (max-width: 640px) {
+  .label-success {
+    @apply label-success-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-success {
+    @apply label-success-desktop;
+  }
+}
+
+/* Label focus states responsive */
+.label-focus-mobile {
+  @apply ring-1;
+}
+
+.label-focus-desktop {
+  @apply ring-2;
+}
+
+@media (max-width: 640px) {
+  .label-focus {
+    @apply label-focus-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-focus {
+    @apply label-focus-desktop;
+  }
+}
+
+/* Label hover states responsive */
+.label-hover-mobile {
+  @apply opacity-80;
+}
+
+.label-hover-desktop {
+  @apply opacity-90;
+}
+
+@media (max-width: 640px) {
+  .label-hover {
+    @apply label-hover-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-hover {
+    @apply label-hover-desktop;
+  }
+}
+
+/* Label active states responsive */
+.label-active-mobile {
+  @apply scale-95;
+}
+
+.label-active-desktop {
+  @apply scale-98;
+}
+
+@media (max-width: 640px) {
+  .label-active {
+    @apply label-active-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-active {
+    @apply label-active-desktop;
+  }
+}
+
+/* Label disabled states responsive */
+.label-disabled-mobile {
+  @apply opacity-50;
+}
+
+.label-disabled-desktop {
+  @apply opacity-60;
+}
+
+@media (max-width: 640px) {
+  .label-disabled {
+    @apply label-disabled-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-disabled {
+    @apply label-disabled-desktop;
+  }
+}
+
+/* Label selected states responsive */
+.label-selected-mobile {
+  @apply ring-1;
+}
+
+.label-selected-desktop {
+  @apply ring-2;
+}
+
+@media (max-width: 640px) {
+  .label-selected {
+    @apply label-selected-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-selected {
+    @apply label-selected-desktop;
+  }
+}
+
+/* Label transition responsive */
+.label-transition-mobile {
+  @apply duration-150;
+}
+
+.label-transition-desktop {
+  @apply duration-200;
+}
+
+@media (max-width: 640px) {
+  .label-transition {
+    @apply label-transition-mobile;
+  }
+}
+
+@media (min-width: 641px) {
+  .label-transition {
+    @apply label-transition-desktop;
+  }
+}

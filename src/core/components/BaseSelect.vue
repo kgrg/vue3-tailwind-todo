@@ -11,10 +11,7 @@
         :required="required"
         :disabled="disabled"
         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-        :class="[
-          error ? 'border-red-300' : '',
-          disabled ? 'bg-gray-100 cursor-not-allowed' : ''
-        ]"
+        :class="[error ? 'border-red-300' : '', disabled ? 'bg-gray-100 cursor-not-allowed' : '']"
       >
         <option v-if="placeholder" value="">{{ placeholder }}</option>
         <option
@@ -26,7 +23,10 @@
           {{ option.label }}
         </option>
       </select>
-      <div v-if="error" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+      <div
+        v-if="error"
+        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+      >
         <ExclamationCircleIcon class="h-5 w-5 text-red-500" />
       </div>
       <div v-if="icon" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -61,4 +61,4 @@ defineProps<{
 defineEmits<{
   (e: 'update:modelValue', value: string | number): void
 }>()
-</script> 
+</script>

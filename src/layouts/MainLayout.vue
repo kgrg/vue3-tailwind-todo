@@ -13,4 +13,4 @@
 <script setup>
 import AppSidebar from '@/layouts/AppSidebar.vue'
 import AppHeader from '@/layouts/AppHeader.vue'
-</script> 
+</script>

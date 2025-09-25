@@ -1,21 +1,21 @@
 <template>
   <BaseCard>
     <template #header-left>
-      <span 
+      <span
         class="w-2 h-2 rounded-full"
         :class="{
           'bg-blue-500': category === 'Work',
           'bg-green-500': category === 'Personal',
           'bg-purple-500': category === 'Learning',
           'bg-red-500': category === 'Health',
-          'bg-gray-500': category === 'Other'
+          'bg-gray-500': category === 'Other',
         }"
       ></span>
       <span class="text-sm font-medium text-gray-600">{{ category }}</span>
     </template>
 
     <template #header-right>
-      <button 
+      <button
         @click="toggleComplete"
         class="text-sm font-medium"
         :class="completed ? 'text-green-600' : 'text-gray-500 hover:text-gray-700'"
@@ -66,4 +66,4 @@ const activityStore = useActivityStore()
 const toggleComplete = () => {
   activityStore.updateActivity(props.id, { completed: !props.completed })
 }
-</script> 
+</script>

@@ -34,20 +34,24 @@ onMounted(() => {
             position: 'right',
             labels: {
               boxWidth: 12,
-              padding: 15
-            }
-          }
+              padding: 15,
+            },
+          },
         },
-        cutout: '70%'
-      }
+        cutout: '70%',
+      },
     })
   }
 })
 
-watch(() => props.data, (newData) => {
-  if (chart) {
-    chart.data = newData
-    chart.update()
-  }
-}, { deep: true })
-</script> 
+watch(
+  () => props.data,
+  newData => {
+    if (chart) {
+      chart.data = newData
+      chart.update()
+    }
+  },
+  { deep: true }
+)
+</script>

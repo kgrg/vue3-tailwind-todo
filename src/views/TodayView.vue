@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-semibold text-gray-900">Today's Activities</h1>
         <p class="mt-1 text-sm text-gray-500">View and manage your activities for today</p>
       </div>
-      <button 
+      <button
         @click="isNewActivityModalOpen = true"
         class="flex items-center px-4 py-2 bg-[#2564CF] text-white rounded-lg hover:bg-[#215ABB]"
       >
@@ -22,17 +22,15 @@
     <!-- Activity List -->
     <div class="bg-white rounded-lg border border-gray-200">
       <div class="divide-y divide-gray-200">
-        <div
-          v-for="activity in todayActivities"
-          :key="activity.id"
-          class="p-4 hover:bg-gray-50"
-        >
+        <div v-for="activity in todayActivities" :key="activity.id" class="p-4 hover:bg-gray-50">
           <div class="flex items-center justify-between">
             <div>
               <h3 class="text-sm font-medium text-gray-900">{{ activity.title }}</h3>
               <p class="mt-1 text-sm text-gray-500">{{ activity.description }}</p>
               <div class="mt-2 flex items-center space-x-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                >
                   {{ activity.category }}
                 </span>
                 <span class="text-sm text-gray-500">{{ activity.time }}</span>
@@ -51,10 +49,7 @@
                   v-if="activity.status === 'completed'"
                   class="h-5 w-5 text-green-500"
                 />
-                <CheckCircleIcon
-                  v-else
-                  class="h-5 w-5"
-                />
+                <CheckCircleIcon v-else class="h-5 w-5" />
               </button>
               <button
                 @click="deleteActivity(activity.id)"
@@ -68,10 +63,7 @@
       </div>
     </div>
 
-    <NewActivityModal
-      :is-open="isNewActivityModalOpen"
-      @close="isNewActivityModalOpen = false"
-    />
+    <NewActivityModal :is-open="isNewActivityModalOpen" @close="isNewActivityModalOpen = false" />
   </div>
 </template>
 
@@ -103,4 +95,4 @@ const toggleActivityStatus = (id: string) => {
 const deleteActivity = (id: string) => {
   activityStore.deleteActivity(id)
 }
-</script> 
+</script>

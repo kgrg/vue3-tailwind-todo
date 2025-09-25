@@ -32,8 +32,8 @@ onMounted(() => {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
-          }
+            display: false,
+          },
         },
         scales: {
           y: {
@@ -41,22 +41,26 @@ onMounted(() => {
             max: 100,
             title: {
               display: true,
-              text: 'Completion Rate (%)'
+              text: 'Completion Rate (%)',
             },
             ticks: {
-              callback: (value: number | string) => `${value}%`
-            }
-          }
-        }
-      }
+              callback: (value: number | string) => `${value}%`,
+            },
+          },
+        },
+      },
     })
   }
 })
 
-watch(() => props.data, (newData) => {
-  if (chart) {
-    chart.data = newData
-    chart.update()
-  }
-}, { deep: true })
-</script> 
+watch(
+  () => props.data,
+  newData => {
+    if (chart) {
+      chart.data = newData
+      chart.update()
+    }
+  },
+  { deep: true }
+)
+</script>

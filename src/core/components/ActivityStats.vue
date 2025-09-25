@@ -1,19 +1,19 @@
 <template>
   <div class="bg-white rounded-lg border border-gray-200 p-6">
     <h3 class="text-lg font-medium text-gray-900 mb-4">Activity Overview</h3>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Stats Cards -->
       <div class="bg-gray-50 rounded-lg p-4">
         <div class="text-sm font-medium text-gray-500">Total Activities</div>
         <div class="mt-1 text-2xl font-semibold text-gray-900">{{ stats.total }}</div>
       </div>
-      
+
       <div class="bg-gray-50 rounded-lg p-4">
         <div class="text-sm font-medium text-gray-500">Completed</div>
         <div class="mt-1 text-2xl font-semibold text-green-600">{{ stats.completed }}</div>
       </div>
-      
+
       <div class="bg-gray-50 rounded-lg p-4">
         <div class="text-sm font-medium text-gray-500">Pending</div>
         <div class="mt-1 text-2xl font-semibold text-yellow-600">{{ stats.pending }}</div>
@@ -57,17 +57,19 @@ const updateChart = () => {
     type: 'doughnut',
     data: {
       labels: categories,
-      datasets: [{
-        data: counts,
-        backgroundColor: [
-          '#2564CF', // Work
-          '#10B981', // Personal
-          '#F59E0B', // Learning
-          '#EF4444', // Health
-          '#8B5CF6'  // Other
-        ],
-        borderWidth: 0
-      }]
+      datasets: [
+        {
+          data: counts,
+          backgroundColor: [
+            '#2564CF', // Work
+            '#10B981', // Personal
+            '#F59E0B', // Learning
+            '#EF4444', // Health
+            '#8B5CF6', // Other
+          ],
+          borderWidth: 0,
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -77,12 +79,12 @@ const updateChart = () => {
           position: 'bottom',
           labels: {
             boxWidth: 12,
-            padding: 20
-          }
-        }
+            padding: 20,
+          },
+        },
       },
-      cutout: '70%'
-    }
+      cutout: '70%',
+    },
   })
 }
 
@@ -90,7 +92,11 @@ onMounted(() => {
   updateChart()
 })
 
-watch(() => activityStore.activities, () => {
-  updateChart()
-}, { deep: true })
-</script> 
+watch(
+  () => activityStore.activities,
+  () => {
+    updateChart()
+  },
+  { deep: true }
+)
+</script>

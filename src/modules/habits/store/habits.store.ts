@@ -9,50 +9,50 @@ export const useHabitStore = defineStore('habits', {
         title: 'Observing',
         image: 'habit_observing.png',
         startTime: '07:00',
-        endTime: '07:30'
+        endTime: '07:30',
       },
       {
         id: 2,
         title: 'Cooking',
         image: 'habit_cooking.png',
         startTime: '09:00',
-        endTime: '10:00'
+        endTime: '10:00',
       },
       {
         id: 3,
         title: 'Self Caring',
         image: 'habit_selfcaring.png',
         startTime: '11:00',
-        endTime: '12:00'
+        endTime: '12:00',
       },
       {
         id: 4,
         title: 'Singing',
         image: 'habit_singing.png',
         startTime: '14:00',
-        endTime: '14:30'
+        endTime: '14:30',
       },
       {
         id: 5,
         title: 'Reading',
         image: 'habit_reading.png',
         startTime: '16:00',
-        endTime: '17:30'
-      }
+        endTime: '17:30',
+      },
     ],
     loading: false,
-    error: null
+    error: null,
   }),
 
   getters: {
-    getHabitById: (state) => (id: number) => {
+    getHabitById: state => (id: number) => {
       return state.habits.find(habit => habit.id === id)
     },
-    sortedHabits: (state) => {
+    sortedHabits: state => {
       return [...state.habits].sort((a, b) => {
         return a.startTime.localeCompare(b.startTime)
       })
-    }
+    },
   },
 
   actions: {
@@ -73,7 +73,7 @@ export const useHabitStore = defineStore('habits', {
         // TODO: Implement API call
         const newHabit = {
           ...habit,
-          id: Math.max(...this.habits.map(h => h.id)) + 1
+          id: Math.max(...this.habits.map(h => h.id)) + 1,
         }
         this.habits.push(newHabit)
         this.loading = false
@@ -108,6 +108,6 @@ export const useHabitStore = defineStore('habits', {
         this.error = error instanceof Error ? error.message : 'An error occurred'
         this.loading = false
       }
-    }
-  }
-}) 
+    },
+  },
+})

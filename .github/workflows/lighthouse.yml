@@ -1,0 +1,96 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Comment PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read Lighthouse results
+            const resultsPath = path.join(process.cwd(), '.lighthouseci');
+            if (fs.existsSync(resultsPath)) {
+              const files = fs.readdirSync(resultsPath);
+              const jsonFile = files.find(file => file.endsWith('.json'));
+              
+              if (jsonFile) {
+                const results = JSON.parse(fs.readFileSync(path.join(resultsPath, jsonFile), 'utf8'));
+                
+                // Extract scores
+                const scores = results.lhr.categories;
+                const performance = Math.round(scores.performance.score * 100);
+                const accessibility = Math.round(scores.accessibility.score * 100);
+                const bestPractices = Math.round(scores['best-practices'].score * 100);
+                const seo = Math.round(scores.seo.score * 100);
+                
+                // Create comment
+                const comment = `## 🚀 Lighthouse CI Results
+                
+                | Category | Score |
+                |----------|-------|
+                | Performance | ${performance}/100 |
+                | Accessibility | ${accessibility}/100 |
+                | Best Practices | ${bestPractices}/100 |
+                | SEO | ${seo}/100 |
+                
+                ### Performance Metrics
+                - **First Contentful Paint**: ${results.lhr.audits['first-contentful-paint'].displayValue}
+                - **Largest Contentful Paint**: ${results.lhr.audits['largest-contentful-paint'].displayValue}
+                - **Cumulative Layout Shift**: ${results.lhr.audits['cumulative-layout-shift'].displayValue}
+                - **Speed Index**: ${results.lhr.audits['speed-index'].displayValue}
+                
+                ### Accessibility
+                - **Color Contrast**: ${results.lhr.audits['color-contrast'].score === 1 ? '✅ Pass' : '❌ Fail'}
+                - **Keyboard Navigation**: ${results.lhr.audits['keyboard-navigation'].score === 1 ? '✅ Pass' : '❌ Fail'}
+                - **Screen Reader**: ${results.lhr.audits['screen-reader'].score === 1 ? '✅ Pass' : '❌ Fail'}
+                
+                ### Recommendations
+                ${results.lhr.categories.performance.auditRefs
+                  .filter(audit => audit.result.score < 0.9)
+                  .map(audit => `- ${audit.result.title}`)
+                  .join('\n')}
+                `;
+                
+                // Post comment
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            }

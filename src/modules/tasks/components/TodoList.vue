@@ -23,11 +23,7 @@
       </div>
 
       <div class="space-y-2">
-        <BaseListItem
-          v-for="todo in filteredTodos"
-          :key="todo.id"
-          customClass="hover:bg-todo-gray"
-        >
+        <BaseListItem v-for="todo in filteredTodos" :key="todo.id" customClass="hover:bg-todo-gray">
           <template #leading>
             <button
               @click="toggleTodo(todo.id)"
@@ -35,7 +31,7 @@
                 'w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200',
                 todo.completed
                   ? 'bg-todo-blue border-todo-blue'
-                  : 'border-gray-300 hover:border-todo-blue'
+                  : 'border-gray-300 hover:border-todo-blue',
               ]"
             >
               <span v-if="todo.completed" class="text-white text-sm">✓</span>
@@ -43,10 +39,7 @@
           </template>
 
           <template #title>
-            <p :class="[
-              'text-gray-700 truncate',
-              todo.completed && 'line-through text-gray-400'
-            ]">
+            <p :class="['text-gray-700 truncate', todo.completed && 'line-through text-gray-400']">
               {{ todo.title }}
             </p>
           </template>
@@ -58,10 +51,7 @@
           </template>
 
           <template #actions>
-            <button
-              @click="toggleImportant(todo.id)"
-              class="text-gray-400 hover:text-yellow-500"
-            >
+            <button @click="toggleImportant(todo.id)" class="text-gray-400 hover:text-yellow-500">
               <span class="text-xl">{{ todo.important ? '⭐' : '☆' }}</span>
             </button>
           </template>
@@ -93,9 +83,9 @@ const addNewTodo = () => {
     addTodo({
       title: newTodoTitle.value,
       completed: false,
-      important: false
+      important: false,
     })
     newTodoTitle.value = ''
   }
 }
-</script> 
+</script>

@@ -10,7 +10,7 @@ export const useTodoStore = defineStore('todo', () => {
   ])
   const activeList = ref('default')
 
-  const addTodo = (todo) => {
+  const addTodo = todo => {
     todos.value.push({
       id: Date.now(),
       title: todo.title,
@@ -23,14 +23,14 @@ export const useTodoStore = defineStore('todo', () => {
     })
   }
 
-  const toggleTodo = (id) => {
+  const toggleTodo = id => {
     const todo = todos.value.find(t => t.id === id)
     if (todo) {
       todo.completed = !todo.completed
     }
   }
 
-  const toggleImportant = (id) => {
+  const toggleImportant = id => {
     const todo = todos.value.find(t => t.id === id)
     if (todo) {
       todo.important = !todo.important
@@ -44,11 +44,11 @@ export const useTodoStore = defineStore('todo', () => {
     }
   }
 
-  const deleteTodo = (id) => {
+  const deleteTodo = id => {
     todos.value = todos.value.filter(t => t.id !== id)
   }
 
-  const setActiveList = (listId) => {
+  const setActiveList = listId => {
     activeList.value = listId
   }
 
@@ -74,4 +74,4 @@ export const useTodoStore = defineStore('todo', () => {
     deleteTodo,
     setActiveList,
   }
-}) 
+})

@@ -18,4 +18,4 @@ export const ChartBarIcon = { template: '<svg>...</svg>' }
 export const ClockIcon = { template: '<svg>...</svg>' }
 export const CheckIcon = { template: '<svg>...</svg>' }
 export const StarIcon = { template: '<svg>...</svg>' }
-export const PencilIcon = { template: '<svg>...</svg>' } 
+export const PencilIcon = { template: '<svg>...</svg>' }

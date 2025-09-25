@@ -32,27 +32,31 @@ onMounted(() => {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
-          }
+            display: false,
+          },
         },
         scales: {
           y: {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Hours'
-            }
-          }
-        }
-      }
+              text: 'Hours',
+            },
+          },
+        },
+      },
     })
   }
 })
 
-watch(() => props.data, (newData) => {
-  if (chart) {
-    chart.data = newData
-    chart.update()
-  }
-}, { deep: true })
-</script> 
+watch(
+  () => props.data,
+  newData => {
+    if (chart) {
+      chart.data = newData
+      chart.update()
+    }
+  },
+  { deep: true }
+)
+</script>

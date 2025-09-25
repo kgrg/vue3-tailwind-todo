@@ -13,10 +13,7 @@
         :disabled="disabled"
         :rows="rows"
         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-        :class="[
-          error ? 'border-red-300' : '',
-          disabled ? 'bg-gray-100 cursor-not-allowed' : ''
-        ]"
+        :class="[error ? 'border-red-300' : '', disabled ? 'bg-gray-100 cursor-not-allowed' : '']"
       ></textarea>
       <div v-if="error" class="absolute top-2 right-0 pr-3 flex items-center pointer-events-none">
         <ExclamationCircleIcon class="h-5 w-5 text-red-500" />
@@ -47,4 +44,4 @@ defineProps<{
 defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
-</script> 
+</script>

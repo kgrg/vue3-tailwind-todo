@@ -32,27 +32,31 @@ onMounted(() => {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
-          }
+            display: false,
+          },
         },
         scales: {
           r: {
             beginAtZero: true,
             max: 100,
             ticks: {
-              stepSize: 20
-            }
-          }
-        }
-      }
+              stepSize: 20,
+            },
+          },
+        },
+      },
     })
   }
 })
 
-watch(() => props.data, (newData) => {
-  if (chart) {
-    chart.data = newData
-    chart.update()
-  }
-}, { deep: true })
-</script> 
+watch(
+  () => props.data,
+  newData => {
+    if (chart) {
+      chart.data = newData
+      chart.update()
+    }
+  },
+  { deep: true }
+)
+</script>

@@ -11,7 +11,7 @@ const mockActivities: Activity[] = [
     time: '09:00',
     location: 'Zoom',
     status: 'completed',
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
   {
     id: '2',
@@ -22,7 +22,7 @@ const mockActivities: Activity[] = [
     time: '18:00',
     location: 'Fitness Center',
     status: 'pending',
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ const mockActivities: Activity[] = [
     time: '14:00',
     location: 'Office',
     status: 'pending',
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
   {
     id: '4',
@@ -44,7 +44,7 @@ const mockActivities: Activity[] = [
     time: '20:00',
     location: 'Home',
     status: 'pending',
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
   {
     id: '5',
@@ -55,30 +55,30 @@ const mockActivities: Activity[] = [
     time: '12:30',
     location: 'Restaurant',
     status: 'pending',
-    createdAt: new Date().toISOString()
-  }
+    createdAt: new Date().toISOString(),
+  },
 ]
 
 export const useActivityStore = defineStore('activities', {
   state: () => ({
     activities: mockActivities,
     loading: false,
-    error: null as string | null
+    error: null as string | null,
   }),
 
   getters: {
-    getActivitiesByDate: (state) => (date: string) => {
+    getActivitiesByDate: state => (date: string) => {
       return state.activities.filter(activity => activity.date === date)
     },
-    getActivitiesByCategory: (state) => (category: string) => {
+    getActivitiesByCategory: state => (category: string) => {
       return state.activities.filter(activity => activity.category === category)
     },
-    getActivityStats: (state) => {
+    getActivityStats: state => {
       const stats = {
         total: state.activities.length,
         completed: state.activities.filter(a => a.status === 'completed').length,
         pending: state.activities.filter(a => a.status === 'pending').length,
-        byCategory: {} as Record<string, number>
+        byCategory: {} as Record<string, number>,
       }
 
       state.activities.forEach(activity => {
@@ -86,7 +86,7 @@ export const useActivityStore = defineStore('activities', {
       })
 
       return stats
-    }
+    },
   },
 
   actions: {
@@ -95,7 +95,7 @@ export const useActivityStore = defineStore('activities', {
         id: Date.now().toString(),
         ...activity,
         status: 'pending',
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
       }
       this.activities.push(newActivity)
     },
@@ -109,6 +109,6 @@ export const useActivityStore = defineStore('activities', {
 
     deleteActivity(id: string) {
       this.activities = this.activities.filter(a => a.id !== id)
-    }
-  }
-}) 
+    },
+  },
+})

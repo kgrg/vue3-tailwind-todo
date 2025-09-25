@@ -6,11 +6,11 @@ export const useAuthStore = defineStore('auth', {
     user: null,
     isAuthenticated: false,
     loading: false,
-    error: null
+    error: null,
   }),
 
   getters: {
-    currentUser: (state): User | null => state.user
+    currentUser: (state): User | null => state.user,
   },
 
   actions: {
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('auth', {
           id: '1',
           email: credentials.email,
           name: 'John Doe',
-          avatar: 'https://ui-avatars.com/api/?name=John+Doe'
+          avatar: 'https://ui-avatars.com/api/?name=John+Doe',
         }
         this.isAuthenticated = true
       } catch (error) {
@@ -47,6 +47,6 @@ export const useAuthStore = defineStore('auth', {
       } finally {
         this.loading = false
       }
-    }
-  }
-}) 
+    },
+  },
+})

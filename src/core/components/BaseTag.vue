@@ -11,4 +11,4 @@
 defineProps<{
   color: string
 }>()
-</script> 
+</script>

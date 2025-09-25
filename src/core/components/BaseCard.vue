@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-shadow"
     :class="customClass"
   >
@@ -27,4 +27,4 @@
 defineProps<{
   customClass?: string
 }>()
-</script> 
+</script>

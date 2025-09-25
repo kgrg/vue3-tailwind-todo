@@ -7,6 +7,7 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import ActivityListView from '@/views/ActivityListView.vue'
 import DashboardView from '@/views/DashboardView.vue'
+import LabelManagement from '@/modules/labels/components/LabelManagement.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,49 +17,54 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'dashboard',
-        component: DashboardView
+        component: DashboardView,
       },
       {
         path: 'today',
         name: 'today',
-        component: TodayView
+        component: TodayView,
       },
       {
         path: 'upcoming',
         name: 'upcoming',
-        component: ActivityListView
+        component: ActivityListView,
       },
       {
         path: 'activities',
         name: 'activities',
-        component: ActivityListView
+        component: ActivityListView,
       },
       {
         path: 'categories/:category',
         name: 'category',
-        component: ActivityListView
+        component: ActivityListView,
       },
       {
         path: 'tags/:tag',
         name: 'tag',
-        component: ActivityListView
+        component: ActivityListView,
       },
       {
         path: 'completed',
         name: 'completed',
-        component: ActivityListView
+        component: ActivityListView,
       },
       {
         path: 'analytics',
         name: 'analytics',
-        component: DashboardView
+        component: DashboardView,
       },
       {
         path: 'settings',
         name: 'settings',
-        component: ActivityListView
-      }
-    ]
+        component: ActivityListView,
+      },
+      {
+        path: 'labels',
+        name: 'labels',
+        component: LabelManagement,
+      },
+    ],
   },
   {
     path: '/',
@@ -68,15 +74,15 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'login',
         name: 'login',
-        component: LoginPage
-      }
-    ]
-  }
+        component: LoginPage,
+      },
+    ],
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
 
 // Navigation guard
@@ -94,4 +100,4 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export default router 
+export default router

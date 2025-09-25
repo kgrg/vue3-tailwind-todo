@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
         <p class="mt-1 text-sm text-gray-500">Overview of your activities and progress</p>
       </div>
-      <button 
+      <button
         @click="isNewActivityModalOpen = true"
         class="flex items-center px-4 py-2 bg-[#2564CF] text-white rounded-lg hover:bg-[#215ABB]"
       >
@@ -34,8 +34,8 @@
             <span class="text-gray-500">{{ todayStats.completionRate }}%</span>
           </div>
           <div class="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
-              class="bg-green-500 h-2 rounded-full" 
+            <div
+              class="bg-green-500 h-2 rounded-full"
               :style="{ width: `${todayStats.completionRate}%` }"
             ></div>
           </div>
@@ -47,7 +47,9 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-medium text-gray-500">Weekly Performance</p>
-            <p class="mt-2 text-3xl font-semibold text-gray-900">{{ weeklyStats.averageCompletion }}%</p>
+            <p class="mt-2 text-3xl font-semibold text-gray-900">
+              {{ weeklyStats.averageCompletion }}%
+            </p>
           </div>
           <div class="p-3 bg-purple-50 rounded-full">
             <ChartBarIcon class="w-6 h-6 text-purple-500" />
@@ -59,8 +61,8 @@
             <span class="text-gray-500">{{ weeklyStats.trend }}% vs last week</span>
           </div>
           <div class="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
-              class="bg-purple-500 h-2 rounded-full" 
+            <div
+              class="bg-purple-500 h-2 rounded-full"
               :style="{ width: `${weeklyStats.trend}%` }"
             ></div>
           </div>
@@ -84,8 +86,8 @@
             <span class="text-gray-500">{{ timeStats.efficiency }}% efficiency</span>
           </div>
           <div class="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
-              class="bg-green-500 h-2 rounded-full" 
+            <div
+              class="bg-green-500 h-2 rounded-full"
               :style="{ width: `${timeStats.efficiency}%` }"
             ></div>
           </div>
@@ -109,8 +111,8 @@
             <span class="text-gray-500">{{ categoryFocus.trend }}% increase</span>
           </div>
           <div class="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
-              class="bg-yellow-500 h-2 rounded-full" 
+            <div
+              class="bg-yellow-500 h-2 rounded-full"
               :style="{ width: `${categoryFocus.percentage}%` }"
             ></div>
           </div>
@@ -162,17 +164,15 @@
         <h2 class="text-lg font-medium text-gray-900">Recent Activities</h2>
       </div>
       <div class="divide-y divide-gray-200">
-        <div
-          v-for="activity in recentActivities"
-          :key="activity.id"
-          class="p-4 hover:bg-gray-50"
-        >
+        <div v-for="activity in recentActivities" :key="activity.id" class="p-4 hover:bg-gray-50">
           <div class="flex items-center justify-between">
             <div>
               <h3 class="text-sm font-medium text-gray-900">{{ activity.title }}</h3>
               <p class="mt-1 text-sm text-gray-500">{{ activity.description }}</p>
               <div class="mt-2 flex items-center space-x-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+                >
                   {{ activity.category }}
                 </span>
                 <span class="text-sm text-gray-500">{{ activity.time }}</span>
@@ -191,10 +191,7 @@
                   v-if="activity.status === 'completed'"
                   class="h-5 w-5 text-green-500"
                 />
-                <CheckCircleIcon
-                  v-else
-                  class="h-5 w-5"
-                />
+                <CheckCircleIcon v-else class="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -202,23 +199,20 @@
       </div>
     </div>
 
-    <NewActivityModal
-      :is-open="isNewActivityModalOpen"
-      @close="isNewActivityModalOpen = false"
-    />
+    <NewActivityModal :is-open="isNewActivityModalOpen" @close="isNewActivityModalOpen = false" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { 
-  PlusIcon, 
-  CalendarDaysIcon, 
-  ClockIcon, 
-  TagIcon, 
+import {
+  PlusIcon,
+  CalendarDaysIcon,
+  ClockIcon,
+  TagIcon,
   ChartBarIcon,
   MapPinIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
 } from '@heroicons/vue/24/outline'
 import { useActivityStore } from '@/modules/activities/store/activities.store'
 import NewActivityModal from '@/modules/activities/components/NewActivityModal.vue'
@@ -241,7 +235,7 @@ const todayStats = computed(() => {
   return {
     total,
     completed,
-    completionRate
+    completionRate,
   }
 })
 
@@ -264,7 +258,7 @@ const upcomingStats = computed(() => {
   return {
     total: activities.length,
     next7Days: activities.length,
-    overdue
+    overdue,
   }
 })
 
@@ -273,12 +267,12 @@ const categoryStats = computed(() => {
   const categories = ['Work', 'Personal', 'Health & Fitness', 'Learning']
   const distribution = categories.map(category => ({
     name: category,
-    count: activityStore.activities.filter(a => a.category === category).length
+    count: activityStore.activities.filter(a => a.category === category).length,
   }))
 
   return {
     total: activityStore.activities.length,
-    distribution
+    distribution,
   }
 })
 
@@ -306,21 +300,25 @@ const completionData = computed(() => {
   // This would be calculated based on historical data
   return {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-      label: 'Completion Rate',
-      data: [65, 70, 80, 75, 85, 60, 70],
-      backgroundColor: '#2564CF'
-    }]
+    datasets: [
+      {
+        label: 'Completion Rate',
+        data: [65, 70, 80, 75, 85, 60, 70],
+        backgroundColor: '#2564CF',
+      },
+    ],
   }
 })
 
 const categoryData = computed(() => {
   return {
     labels: categoryStats.value.distribution.map(c => c.name),
-    datasets: [{
-      data: categoryStats.value.distribution.map(c => c.count),
-      backgroundColor: ['#2564CF', '#7C3AED', '#059669', '#D97706']
-    }]
+    datasets: [
+      {
+        data: categoryStats.value.distribution.map(c => c.count),
+        backgroundColor: ['#2564CF', '#7C3AED', '#059669', '#D97706'],
+      },
+    ],
   }
 })
 
@@ -339,7 +337,7 @@ const weeklyStats = computed(() => {
   return {
     averageCompletion: 75,
     bestDay: 'Wednesday',
-    trend: 12
+    trend: 12,
   }
 })
 
@@ -348,7 +346,7 @@ const timeStats = computed(() => {
   return {
     totalHours: 42,
     productiveHours: 32,
-    efficiency: 76
+    efficiency: 76,
   }
 })
 
@@ -357,7 +355,7 @@ const categoryFocus = computed(() => {
   return {
     topCategory: 'Work',
     percentage: 45,
-    trend: 8
+    trend: 8,
   }
 })
 
@@ -365,11 +363,13 @@ const categoryFocus = computed(() => {
 const activityHoursData = computed(() => {
   return {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-      label: 'Hours',
-      data: [6, 5, 7, 6, 5, 3, 2],
-      backgroundColor: '#2564CF'
-    }]
+    datasets: [
+      {
+        label: 'Hours',
+        data: [6, 5, 7, 6, 5, 3, 2],
+        backgroundColor: '#2564CF',
+      },
+    ],
   }
 })
 
@@ -377,11 +377,13 @@ const activityHoursData = computed(() => {
 const productivityData = computed(() => {
   return {
     labels: ['Morning', 'Afternoon', 'Evening', 'Night'],
-    datasets: [{
-      label: 'Productivity',
-      data: [85, 70, 60, 40],
-      backgroundColor: '#7C3AED'
-    }]
+    datasets: [
+      {
+        label: 'Productivity',
+        data: [85, 70, 60, 40],
+        backgroundColor: '#7C3AED',
+      },
+    ],
   }
 })
-</script> 
+</script>

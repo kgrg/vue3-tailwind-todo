@@ -30,13 +30,13 @@
     </BaseInput>
 
     <div class="flex items-center justify-between">
-      <BaseCheckbox
-        v-model="form.remember"
-        label="Remember me"
-      />
+      <BaseCheckbox v-model="form.remember" label="Remember me" />
 
       <div class="text-sm">
-        <router-link to="/forgot-password" class="font-medium text-primary-600 hover:text-primary-500">
+        <router-link
+          to="/forgot-password"
+          class="font-medium text-primary-600 hover:text-primary-500"
+        >
           Forgot your password?
         </router-link>
       </div>
@@ -72,13 +72,13 @@ const showPassword = ref(false)
 const loading = ref(false)
 const errors = reactive({
   email: '',
-  password: ''
+  password: '',
 })
 
 const form = reactive({
   email: '',
   password: '',
-  remember: false
+  remember: false,
 })
 
 const validateForm = (): boolean => {
@@ -112,7 +112,7 @@ const handleSubmit = async () => {
   try {
     await authStore.login({
       email: form.email,
-      password: form.password
+      password: form.password,
     })
     router.push('/')
   } catch (error) {
@@ -121,4 +121,4 @@ const handleSubmit = async () => {
     loading.value = false
   }
 }
-</script> 
+</script>

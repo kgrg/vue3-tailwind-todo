@@ -8,10 +8,7 @@
       :required="required"
       :disabled="disabled"
       class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-      :class="[
-        error ? 'border-red-300' : '',
-        disabled ? 'bg-gray-100 cursor-not-allowed' : ''
-      ]"
+      :class="[error ? 'border-red-300' : '', disabled ? 'bg-gray-100 cursor-not-allowed' : '']"
     />
     <label v-if="label" :for="id" class="ml-2 block text-sm text-gray-900">
       {{ label }}
@@ -38,4 +35,4 @@ defineProps<{
 defineEmits<{
   (e: 'update:modelValue', value: boolean): void
 }>()
-</script> 
+</script>
