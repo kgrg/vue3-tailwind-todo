@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import TodayView from '@/views/TodayView.vue'
+import TodayView from '@/pages/TodayView.vue'
 import LoginPage from '@/modules/auth/pages/LoginPage.vue'
 import { useAuthStore } from '@/modules/auth/store/auth.store'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
-import ActivityListView from '@/views/ActivityListView.vue'
-import DashboardView from '@/views/DashboardView.vue'
+import ActivityListView from '@/pages/ActivityListView.vue'
+import DashboardView from '@/pages/DashboardView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
