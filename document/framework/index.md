@@ -11,46 +11,51 @@ Welcome to the JustDo Vue documentation. This documentation provides comprehensi
    - Understand how to organize your Vue 3 application
    - Follow guiding principles for file organization
 
-2. **[State Management](./state-management.md)**
+2. **[Component Organisation](./component-organisation.md)**
+   - Feature-first folder structure for components
+   - Naming conventions for shared and feature components
+   - Composition patterns and testing strategy
+
+3. **[State Management](./state-management.md)**
    - Pinia patterns and best practices
    - Store composition and reactive state
    - Module organization and naming conventions
 
-3. **[Routing](./routing.md)**
+4. **[Routing](./routing.md)**
    - Modular routing architecture
    - Route organization and structure
    - Navigation guards and lazy loading
 
 ### Development Practices
 
-4. **[Testing](./testing.md)**
+5. **[Testing](./testing.md)**
    - AAA (Arrange-Act-Assert) testing pattern
    - Vue Testing Utils and Jest setup
    - Component and unit testing strategies
 
-5. **[Error Handling](./error-handling.md)**
+6. **[Error Handling](./error-handling.md)**
    - Global error handling strategies
    - Component-level error boundaries
    - API error management
 
-6. **[Logging](./logging.md)**
+7. **[Logging](./logging.md)**
    - Centralized logging with Pinia stores
    - Log levels and formatting
    - Production logging best practices
 
 ### Utilities & Configuration
 
-7. **[Utility Functions](./utility.md)**
+8. **[Utility Functions](./utility.md)**
    - Date formatting utilities
    - Common helper functions
    - Type-safe utility patterns
 
-8. **[Middleware](./milddware.md)**
+9. **[Middleware](./milddware.md)**
    - Route middleware implementation
    - Authentication and authorization guards
    - Request/response interceptors
 
-9. **[Custom Environment](./custom-enviroment.md)**
+10. **[Custom Environment](./custom-enviroment.md)**
    - Environment variable configuration
    - Multi-environment setup
    - Build-time vs runtime configuration
