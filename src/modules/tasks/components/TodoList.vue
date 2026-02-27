@@ -91,9 +91,7 @@ const activeListName = computed(() => {
 const addNewTodo = () => {
   if (newTodoTitle.value.trim()) {
     addTodo({
-      title: newTodoTitle.value,
-      completed: false,
-      important: false
+      title: newTodoTitle.value
     })
     newTodoTitle.value = ''
   }

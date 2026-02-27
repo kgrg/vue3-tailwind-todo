@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 
-type TodoListId = 'default' | 'important' | 'planned' | string
+type KnownTodoListId = 'default' | 'important' | 'planned'
+type TodoListId = KnownTodoListId | (string & {})
 
 interface TodoList {
   id: TodoListId
@@ -21,8 +22,6 @@ interface Todo {
 
 interface NewTodoInput {
   title: string
-  completed?: boolean
-  important?: boolean
   dueDate?: string | null
   notes?: string
   listId?: TodoListId
@@ -45,15 +44,16 @@ export const useTodoStore = defineStore('todo', {
     activeList: 'default'
   }),
 
-  getters: {
-    filteredTodos: (state): Todo[] => {
-      if (state.activeList === 'important') {
-        return state.todos.filter(todo => todo.important)
-      }
-      if (state.activeList === 'planned') {
-        return state.todos.filter(todo => todo.dueDate)
-      }
-      return state.todos.filter(todo => todo.listId === state.activeList)
+  const addTodo = (todo: NewTodoInput) => {
+    const newTodo: Todo = {
+      id: Date.now(),
+      title: todo.title,
+      completed: false,
+      important: false,
+      dueDate: todo.dueDate ?? null,
+      notes: todo.notes ?? '',
+      listId: todo.listId ?? activeList.value,
+      createdAt: new Date().toISOString()
     }
   },
 
