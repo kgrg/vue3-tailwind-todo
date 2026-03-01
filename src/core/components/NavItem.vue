@@ -16,7 +16,7 @@
         :is="icon" 
         class="w-5 h-5 sm:w-4 sm:h-4 mr-3 sm:mr-2 flex-shrink-0"
         :class="[
-          color ? `text-${color}-500` : 'text-gray-500',
+          color ? getIconClasses(color) : 'text-gray-500',
           active ? 'text-gray-900' : ''
         ]"
       />
@@ -24,7 +24,7 @@
         class="text-base sm:text-sm truncate"
         :class="[
           active ? 'font-medium text-gray-900' : 'text-gray-600',
-          color ? `group-hover:text-${color}-600` : 'group-hover:text-gray-900'
+          getHoverClasses(color)
         ]"
       >
         {{ label }}
@@ -34,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import { getIconClasses, getHoverClasses } from '@/core/utils/colorClasses'
+
 interface Props {
   to: string
   icon: object
