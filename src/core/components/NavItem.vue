@@ -16,7 +16,7 @@
         :is="icon" 
         class="w-5 h-5 sm:w-4 sm:h-4 mr-3 sm:mr-2 flex-shrink-0"
         :class="[
-          color ? getIconClasses(color) : 'text-gray-500',
+          getIconClasses(color),
           active ? 'text-gray-900' : ''
         ]"
       />
