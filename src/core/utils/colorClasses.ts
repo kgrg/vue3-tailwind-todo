@@ -67,17 +67,24 @@ export const hoverColorClasses: Record<ColorKey, string> = {
 
 const DEFAULT_TAG_CLASSES = tagColorClasses.gray
 const DEFAULT_ICON_CLASSES = iconColorClasses.gray
+// Intentionally gray-900 (not gray-600) to match the original NavItem
+// hover behavior when no color prop is provided.
 const DEFAULT_HOVER_CLASSES = 'group-hover:text-gray-900'
 
-export function getTagClasses(color: string): string {
-  return tagColorClasses[color as ColorKey] ?? DEFAULT_TAG_CLASSES
+function isColorKey(value: string): value is ColorKey {
+  return Object.hasOwn(tagColorClasses, value)
 }
 
-export function getIconClasses(color: string): string {
-  return iconColorClasses[color as ColorKey] ?? DEFAULT_ICON_CLASSES
+export function getTagClasses(color: string): string {
+  return isColorKey(color) ? tagColorClasses[color] : DEFAULT_TAG_CLASSES
+}
+
+export function getIconClasses(color: string | undefined): string {
+  if (!color) return DEFAULT_ICON_CLASSES
+  return isColorKey(color) ? iconColorClasses[color] : DEFAULT_ICON_CLASSES
 }
 
 export function getHoverClasses(color: string | undefined): string {
   if (!color) return DEFAULT_HOVER_CLASSES
-  return hoverColorClasses[color as ColorKey] ?? DEFAULT_HOVER_CLASSES
+  return isColorKey(color) ? hoverColorClasses[color] : DEFAULT_HOVER_CLASSES
 }

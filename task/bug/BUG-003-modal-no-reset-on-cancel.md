@@ -5,7 +5,7 @@
 | **ID**      | BUG-003                                        |
 | **Severity**| Medium                                         |
 | **Type**    | Bug                                            |
-| **Status**  | Open                                           |
+| **Status**  | Fixed                                          |
 | **Created** | 2026-03-01                                     |
 | **Component** | `src/modules/activities/components/NewActivityModal.vue` |
 | **Affects** | All pages that use NewActivityModal (Dashboard, Today, ActivityList) |
