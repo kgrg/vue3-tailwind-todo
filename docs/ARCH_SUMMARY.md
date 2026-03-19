@@ -17,7 +17,7 @@ TaskFlow is a single-page Vue 3 application for activity and task management. It
 | Framework | Vue 3 (Composition API) | ^3.4.21 |
 | State Management | Pinia | ^2.1.7 |
 | Routing | Vue Router | 4.5.0 |
-| Build | Vite | ^5.1.6 |
+| Build | Vite+ (vite-plus) | 0.1.12 |
 | Styling | Tailwind CSS | ^4.1.4 |
 | UI Components | @headlessui/vue | 1.7.23 |
 | Icons | @heroicons/vue | 2.2.0 |

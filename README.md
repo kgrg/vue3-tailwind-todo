@@ -1,94 +1,105 @@
 # TaskFlow - Modern Activity & Task Management
 
-<p align="center">
-  <h1 align="center">TaskFlow - Your Personal Activity Assistant</h1>
-  <p align="center">
-    A modern, intuitive Vue 3 application for managing your daily activities, habits, and tasks.
-  </p>
-</p>
-
-## About
-
-TaskFlow is a comprehensive activity management application built with Vue 3 and Vite. It helps you organize your daily life with:
-
-1. **Activity Management:** Track and manage your daily activities with ease
-2. **Habit Building:** Monitor and maintain your daily habits
-3. **Task Management:** Organize tasks with categories and priorities
-4. **Smart Reminders:** Never miss important events or deadlines
+A modern, intuitive application for managing your daily activities, habits, and tasks. Built as a pnpm monorepo with a Vue 3 frontend and an Express API backend.
 
 ## Features
 
-- **Modern UI/UX:** Clean and intuitive interface built with Tailwind CSS
-- **Activity Dashboard:** View and manage all your activities in one place
-- **Habit Tracking:** Build and maintain positive habits with visual tracking
-- **Smart Categories:** Organize tasks and activities by work, personal, learning, health, and more
-- **Progress Tracking:** Monitor your completion rates and activity patterns
-- **Responsive Design:** Works seamlessly on desktop and mobile devices
+- **Activity Dashboard** — view and manage all your activities in one place
+- **Habit Tracking** — build and maintain positive habits with visual tracking
+- **Task Management** — organise tasks with categories and priorities
+- **Progress Tracking** — monitor completion rates and activity patterns
+- **Responsive Design** — works on desktop and mobile
 
-## Screenshots
+## Tech Stack
 
-### Dashboard Overview
-
-![Dashboard Screenshot](image.png)
-<p align="center"><i>The modern dashboard provides a visual overview of your activities, completion rates, category distribution, and productivity trends.</i></p>
-
-## Built with
-
-- [Vue 3](https://vuejs.org/) - The Progressive JavaScript Framework
-- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using
-- [Heroicons](https://heroicons.com/) - Beautiful hand-crafted SVG icons
+- [Vue 3](https://vuejs.org/) + [Vue Router](https://router.vuejs.org/) + [Pinia](https://pinia.vuejs.org/)
+- [Vite+](https://github.com/voidzero-dev/vite-plus) — unified build toolchain
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Express 5](https://expressjs.com/) (API)
+- [Heroicons](https://heroicons.com/)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js >= 18.0.0
-- pnpm >= 8.6.12
+- Node.js >= 22.18.0
+- pnpm >= 9.12.3
 
 ### Installation
 
-1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/justdo-vue.git
-cd justdo-vue
-```
-
-2. Install dependencies
-```bash
+git clone https://github.com/yourusername/taskflow.git
+cd taskflow
 pnpm install
 ```
 
-3. Start the development server
+### Development
+
 ```bash
-pnpm dev
+pnpm dev          # start both web and api in parallel
+pnpm dev:web      # web only  (http://localhost:5173)
+pnpm dev:api      # api only  (http://localhost:3001)
 ```
 
-4. Build for production
+### Production Build
+
 ```bash
-pnpm build
+pnpm build        # build both apps
+pnpm build:web    # web only
+pnpm build:api    # api only
 ```
+
+### Docker
+
+Run both services in production mode:
+
+```bash
+docker compose up --build
+```
+
+| Service | URL |
+|---------|-----|
+| Web     | http://localhost:8080 |
+| API     | http://localhost:3001 |
+
+### Dev Container
+
+Open the repo in VS Code and select **Reopen in Container** (requires the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension), or launch via GitHub Codespaces. The container comes with Node 22, pnpm, and Docker-in-Docker pre-configured.
 
 ## Project Structure
 
 ```
-src/
-├── core/               # Core components and utilities
-├── modules/           # Feature modules
-│   ├── activities/    # Activity management
-│   ├── habits/        # Habit tracking
-│   └── tasks/        # Task management
-├── styles/           # Global styles and Tailwind config
-└── views/            # Page components
+├── apps/
+│   ├── web/                 # Vue 3 frontend
+│   │   └── src/
+│   │       ├── core/        # Shared components & utilities
+│   │       ├── layouts/     # App layouts
+│   │       ├── modules/     # Feature modules
+│   │       │   ├── activities/
+│   │       │   ├── auth/
+│   │       │   ├── habits/
+│   │       │   └── tasks/
+│   │       ├── pages/       # Route-level views
+│   │       ├── router/
+│   │       └── styles/
+│   └── api/                 # Express 5 API
+│       └── src/
+│           ├── index.ts     # Server entry
+│           ├── routes/      # Route handlers
+│           ├── data.ts      # In-memory data
+│           └── types.ts
+├── docker/                  # Production Dockerfiles & nginx config
+├── .devcontainer/           # Dev Container (containers.dev) config
+├── docker-compose.yml
+└── pnpm-workspace.yaml
 ```
 
 ## Contributing
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## License
