@@ -26,5 +26,6 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "tailwindcss": "^4.1.4",
     "vite": "^5.1.6"
-  }
+  },
+  "packageManager": "pnpm@9.12.3+sha1.4fb96925d434c491285182acf29803bb9aa2e6e5"
 }
