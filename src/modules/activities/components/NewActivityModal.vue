@@ -121,7 +121,7 @@ const emit = defineEmits<{
 
 const activityStore = useActivityStore()
 
-const form = ref<NewActivityForm>({
+const defaultForm = (): NewActivityForm => ({
   title: '',
   description: '',
   category: 'Work',
@@ -130,21 +130,19 @@ const form = ref<NewActivityForm>({
   location: ''
 })
 
+const form = ref<NewActivityForm>(defaultForm())
+
+const resetForm = () => {
+  form.value = defaultForm()
+}
+
 const closeModal = () => {
+  resetForm()
   emit('close')
 }
 
 const handleSubmit = () => {
   activityStore.addActivity(form.value)
   closeModal()
-  // Reset form
-  form.value = {
-    title: '',
-    description: '',
-    category: 'Work',
-    date: new Date().toISOString().split('T')[0],
-    time: '12:00',
-    location: ''
-  }
 }
 </script> 
