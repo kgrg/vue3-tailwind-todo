@@ -5,10 +5,10 @@ Use it together with path-scoped instructions in `.github/instructions/`.
 
 ## Repo Profile
 
-- Product type: single-package Vue 3 application, not a monorepo.
+- Product type: `pnpm` workspace with separate web and API apps.
 - Product focus: activity, habit, and task planning with an emphasis on focus, realism, and reducing overwhelm.
-- Stack: Vue 3, Vite 5, Pinia, Vue Router, Tailwind CSS 4, TypeScript with some legacy JS.
-- Architecture: feature modules under `src/modules/`, shared UI and infrastructure under `src/core/`, route-level views under `src/pages/`, layouts under `src/layouts/`.
+- Stack: Vue 3, Vite 5, Pinia, Vue Router, Tailwind CSS 4, TypeScript on the web app; Express with TypeScript on the API app.
+- Architecture: frontend code lives under `apps/web/src/` with feature modules in `modules/`, shared UI in `core/`, route-level views in `pages/`, and layouts in `layouts/`. API routes and in-memory data live under `apps/api/src/`.
 
 ## Verified Commands
 
@@ -18,21 +18,24 @@ Only reference commands that exist today:
 pnpm install
 pnpm dev
 pnpm build
-pnpm preview
+pnpm dev:web
+pnpm dev:api
+pnpm build:web
+pnpm build:api
 ```
 
-Do not invent `pnpm test`, `pnpm lint`, or formatter commands. No test runner, linter, or CI pipeline is configured yet.
+Do not invent `pnpm test`, `pnpm lint`, formatter, or preview commands at the repo root. No test runner, linter, or CI pipeline is configured yet.
 
 ## Global Codebase Rules
 
 1. Prefer live code and `package.json` over stale documentation when they disagree.
-2. Keep module boundaries clean. Code in `src/modules/<feature>/` may depend on `src/core/` but should not import from other feature modules unless the existing architecture already does so and the change is intentional.
-3. Shared UI belongs in `src/core/components/`. Feature-specific UI belongs in the owning module.
+2. Keep module boundaries clean. Code in `apps/web/src/modules/<feature>/` may depend on `apps/web/src/core/` but should not import from other feature modules unless the existing architecture already does so and the change is intentional.
+3. Shared UI belongs in `apps/web/src/core/components/`. Feature-specific UI belongs in the owning module.
 4. New pages should use the `View.vue` suffix. Layouts should use the `Layout.vue` suffix.
 5. Prefer TypeScript for new code and keep types close to the owning module.
-6. Use the `@/` alias for imports into `src/`.
-7. Preserve the current product reality: client-side data, no backend integration, no hidden service layer assumptions unless the user explicitly asks for that work.
-8. Treat `src/stores/todoStore.js` and `src/pages/TodayPage.vue` as legacy hotspots. Avoid extending them unless the change is explicitly about migration.
+6. Use the `@/` alias for imports into `apps/web/src/`.
+7. Preserve the current product reality: the web app is frontend-first and the API app uses in-memory data unless the user explicitly asks for deeper backend work.
+8. Treat `apps/web/src/pages/TodayPage.vue` as a legacy hotspot. Avoid extending it unless the change is explicitly about migration.
 
 ## Quality Expectations
 
@@ -55,27 +58,26 @@ The current customization system is organized as follows:
 - `.github/copilot-instructions.md`: repo-wide rules.
 - `.github/instructions/tech/*.instructions.md`: technology and implementation rules.
 - `.github/instructions/domains/*.instructions.md`: product and domain rules.
-- `.github/agent/*.agent.md`: durable workflow agents and specialist reviewers.
-- `.github/skills/*`: reusable operational workflows such as GitHub PR publishing.
-
-Legacy files under `.github/agents/` and `.github/prompts/` may still exist. Do not add new source-of-truth files there.
+- `.github/prompts/opsx-*.prompt.md`: OpenSpec workflow entry points.
+- `.github/skills/openspec-*`: OpenSpec workflow skills.
 
 ## Primary Context Sources
 
 Use these in priority order when relevant:
 
 1. `package.json`
-2. `src/`
-3. `docs/ARCH_SUMMARY.md`
-4. `docs/REPO_MAP.md`
-5. `docs/DEPENDENCY_GRAPH.md`
-6. `docs/WORKFLOW_AUDIT_REPORT.md`
-7. `document/development/`
-8. `document/product/`
+2. `apps/web/package.json`
+3. `apps/api/package.json`
+4. `apps/web/src/`
+5. `apps/api/src/`
+6. `.github/instructions/`
+7. `openspec/changes/`
+8. `artifacts/repo_facts.json`
 
 ## Workflow Guidance
 
-1. Planning agents should produce implementation-ready scopes with exact files and acceptance criteria.
-2. Implementation agents should stay within approved scope and call out missing tooling rather than inventing it.
-3. Review agents should separate analysis from GitHub publishing. They report findings; the publisher skill posts them.
-4. Release workflows must explicitly mention the lack of automated tests and linting.
+1. Use `/opsx:new` or `/opsx:propose` to create a new OpenSpec change.
+2. Use `/opsx:explore` for investigation and option analysis without implementation.
+3. Use `/opsx:apply` to implement approved OpenSpec tasks.
+4. Use `/opsx:archive` after all change tasks are complete.
+5. When workflows mention validation, they must explicitly reflect the lack of automated tests and linting in this repo.
