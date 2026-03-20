@@ -1,14 +1,47 @@
-# TaskFlow - Modern Activity & Task Management
+# FocusOS — Rethinking How You Plan Your Day
 
-A modern, intuitive application for managing your daily activities, habits, and tasks. Built as a pnpm monorepo with a Vue 3 frontend and an Express API backend.
+> Your to-do app helps you **store** tasks. We help you **actually do them**.
 
-## Features
+FocusOS is an AI-powered daily planning tool that understands your energy, detects when you're stuck, and explains every recommendation. Built for overwhelmed professionals, students, and anyone who's tried every productivity app and still ends up paralyzed by a 47-item list.
 
-- **Activity Dashboard** — view and manage all your activities in one place
-- **Habit Tracking** — build and maintain positive habits with visual tracking
-- **Task Management** — organise tasks with categories and priorities
-- **Progress Tracking** — monitor completion rates and activity patterns
-- **Responsive Design** — works on desktop and mobile
+**Status:** Stealth mode
+
+---
+
+## The Problem
+
+| Stat | Source |
+|------|--------|
+| **80%** of employees experience productivity anxiety | Yomly, 2025 |
+| **66%** burnout rate — an all-time high | Modern Health / Forbes, 2025 |
+| **2 h 23 min** average productive time per workday | Voucher Cloud / BLS |
+| **23 min** to refocus after a single interruption | UC Irvine |
+| **70%** of employees feel distracted at work | Zippia, 2026 |
+
+Traditional task managers are storage systems. They capture work but don't help you execute it. The result: overplanned days, growing backlogs, lost trust in the tool, and ultimately abandonment.
+
+## Core Differentiators
+
+| Capability | What It Does |
+|------------|--------------|
+| **Explainable AI** | Every task recommendation includes a visible "why" — no black-box scheduling |
+| **Behavioral Intelligence** | Detects postponement loops, diagnoses blockers, and suggests interventions before you spiral |
+| **Energy-Aware Planning** | Matches deep-work tasks to high-energy windows and light tasks to recovery slots |
+| **Actionable Reflection** | Daily shutdown ritual that surfaces *why* tasks slipped, not just completion counts |
+| **"Today's 5" Focus** | Recommends a realistic daily set to reduce overwhelm and rebuild planning trust |
+
+## Market Context
+
+FocusOS targets a **$1.44 billion** task management market growing at **13.1% CAGR** through 2031 (Mordor Intelligence, 2026). Competitors like Motion, Sunsama, and Amazing Marvin each address parts of the problem. None combine **behavioral intelligence + explainable AI** — Focus OS's strongest unique position.
+
+### Competitive Landscape
+
+| Competitor | Strength | Gap |
+|------------|----------|-----|
+| **Motion** | Full AI auto-scheduling | Opaque — no visible reasoning |
+| **Sunsama** | Calm daily planning rituals | No proactive blocker detection |
+| **Amazing Marvin** | Extreme customizability, ADHD support | Minimal AI; trusts user judgment only |
+| **Todoist / TickTick** | Massive user bases, freemium | Storage-first — limited execution support |
 
 ## Tech Stack
 
@@ -28,8 +61,8 @@ A modern, intuitive application for managing your daily activities, habits, and 
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/taskflow.git
-cd taskflow
+git clone https://github.com/yourusername/focus-os.git
+cd focus-os
 pnpm install
 ```
 
@@ -62,10 +95,6 @@ docker compose up --build
 | Web     | http://localhost:8080 |
 | API     | http://localhost:3001 |
 
-### Dev Container
-
-Open the repo in VS Code and select **Reopen in Container** (requires the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension), or launch via GitHub Codespaces. The container comes with Node 22, pnpm, and Docker-in-Docker pre-configured.
-
 ## Project Structure
 
 ```
@@ -89,10 +118,17 @@ Open the repo in VS Code and select **Reopen in Container** (requires the [Dev C
 │           ├── data.ts      # In-memory data
 │           └── types.ts
 ├── docker/                  # Production Dockerfiles & nginx config
-├── .devcontainer/           # Dev Container (containers.dev) config
+├── docs/                    # Architecture docs
+├── document/product/        # PRD & market research
 ├── docker-compose.yml
 └── pnpm-workspace.yaml
 ```
+
+## Target Personas
+
+1. **Overwhelmed Professional** — 66% burnout, 11+ hours/week in meetings, interrupted every 3 minutes
+2. **Student / Knowledge Worker** — 30% of Gen Z face daily productivity anxiety
+3. **Executive Dysfunction / ADHD** — validated by Amazing Marvin's success in this niche
 
 ## Contributing
 
