@@ -1,94 +1,141 @@
-# TaskFlow - Modern Activity & Task Management
+# FocusOS — Rethinking How You Plan Your Day
 
-<p align="center">
-  <h1 align="center">TaskFlow - Your Personal Activity Assistant</h1>
-  <p align="center">
-    A modern, intuitive Vue 3 application for managing your daily activities, habits, and tasks.
-  </p>
-</p>
+> Your to-do app helps you **store** tasks. We help you **actually do them**.
 
-## About
+FocusOS is an AI-powered daily planning tool that understands your energy, detects when you're stuck, and explains every recommendation. Built for overwhelmed professionals, students, and anyone who's tried every productivity app and still ends up paralyzed by a 47-item list.
 
-TaskFlow is a comprehensive activity management application built with Vue 3 and Vite. It helps you organize your daily life with:
+**Status:** Stealth mode
 
-1. **Activity Management:** Track and manage your daily activities with ease
-2. **Habit Building:** Monitor and maintain your daily habits
-3. **Task Management:** Organize tasks with categories and priorities
-4. **Smart Reminders:** Never miss important events or deadlines
+---
 
-## Features
+## The Problem
 
-- **Modern UI/UX:** Clean and intuitive interface built with Tailwind CSS
-- **Activity Dashboard:** View and manage all your activities in one place
-- **Habit Tracking:** Build and maintain positive habits with visual tracking
-- **Smart Categories:** Organize tasks and activities by work, personal, learning, health, and more
-- **Progress Tracking:** Monitor your completion rates and activity patterns
-- **Responsive Design:** Works seamlessly on desktop and mobile devices
+| Stat | Source |
+|------|--------|
+| **80%** of employees experience productivity anxiety | Yomly, 2025 |
+| **66%** burnout rate — an all-time high | Modern Health / Forbes, 2025 |
+| **2 h 23 min** average productive time per workday | Voucher Cloud / BLS |
+| **23 min** to refocus after a single interruption | UC Irvine |
+| **70%** of employees feel distracted at work | Zippia, 2026 |
 
-## Screenshots
+Traditional task managers are storage systems. They capture work but don't help you execute it. The result: overplanned days, growing backlogs, lost trust in the tool, and ultimately abandonment.
 
-### Dashboard Overview
+## Core Differentiators
 
-![Dashboard Screenshot](image.png)
-<p align="center"><i>The modern dashboard provides a visual overview of your activities, completion rates, category distribution, and productivity trends.</i></p>
+| Capability | What It Does |
+|------------|--------------|
+| **Explainable AI** | Every task recommendation includes a visible "why" — no black-box scheduling |
+| **Behavioral Intelligence** | Detects postponement loops, diagnoses blockers, and suggests interventions before you spiral |
+| **Energy-Aware Planning** | Matches deep-work tasks to high-energy windows and light tasks to recovery slots |
+| **Actionable Reflection** | Daily shutdown ritual that surfaces *why* tasks slipped, not just completion counts |
+| **"Today's 5" Focus** | Recommends a realistic daily set to reduce overwhelm and rebuild planning trust |
 
-## Built with
+## Market Context
 
-- [Vue 3](https://vuejs.org/) - The Progressive JavaScript Framework
-- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using
-- [Heroicons](https://heroicons.com/) - Beautiful hand-crafted SVG icons
+FocusOS targets a **$1.44 billion** task management market growing at **13.1% CAGR** through 2031 (Mordor Intelligence, 2026). Competitors like Motion, Sunsama, and Amazing Marvin each address parts of the problem. None combine **behavioral intelligence + explainable AI** — Focus OS's strongest unique position.
+
+### Competitive Landscape
+
+| Competitor | Strength | Gap |
+|------------|----------|-----|
+| **Motion** | Full AI auto-scheduling | Opaque — no visible reasoning |
+| **Sunsama** | Calm daily planning rituals | No proactive blocker detection |
+| **Amazing Marvin** | Extreme customizability, ADHD support | Minimal AI; trusts user judgment only |
+| **Todoist / TickTick** | Massive user bases, freemium | Storage-first — limited execution support |
+
+## Tech Stack
+
+- [Vue 3](https://vuejs.org/) + [Vue Router](https://router.vuejs.org/) + [Pinia](https://pinia.vuejs.org/)
+- [Vite+](https://github.com/voidzero-dev/vite-plus) — unified build toolchain
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Express 5](https://expressjs.com/) (API)
+- [Heroicons](https://heroicons.com/)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js >= 18.0.0
-- pnpm >= 8.6.12
+- Node.js >= 22.18.0
+- pnpm >= 9.12.3
 
 ### Installation
 
-1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/justdo-vue.git
-cd justdo-vue
-```
-
-2. Install dependencies
-```bash
+git clone https://github.com/yourusername/focus-os.git
+cd focus-os
 pnpm install
 ```
 
-3. Start the development server
+### Development
+
 ```bash
-pnpm dev
+pnpm dev          # start both web and api in parallel
+pnpm dev:web      # web only  (http://localhost:5173)
+pnpm dev:api      # api only  (http://localhost:3001)
 ```
 
-4. Build for production
+### Production Build
+
 ```bash
-pnpm build
+pnpm build        # build both apps
+pnpm build:web    # web only
+pnpm build:api    # api only
 ```
+
+### Docker
+
+Run both services in production mode:
+
+```bash
+docker compose up --build
+```
+
+| Service | URL |
+|---------|-----|
+| Web     | http://localhost:8080 |
+| API     | http://localhost:3001 |
 
 ## Project Structure
 
 ```
-src/
-├── core/               # Core components and utilities
-├── modules/           # Feature modules
-│   ├── activities/    # Activity management
-│   ├── habits/        # Habit tracking
-│   └── tasks/        # Task management
-├── styles/           # Global styles and Tailwind config
-└── views/            # Page components
+├── apps/
+│   ├── web/                 # Vue 3 frontend
+│   │   └── src/
+│   │       ├── core/        # Shared components & utilities
+│   │       ├── layouts/     # App layouts
+│   │       ├── modules/     # Feature modules
+│   │       │   ├── activities/
+│   │       │   ├── auth/
+│   │       │   ├── habits/
+│   │       │   └── tasks/
+│   │       ├── pages/       # Route-level views
+│   │       ├── router/
+│   │       └── styles/
+│   └── api/                 # Express 5 API
+│       └── src/
+│           ├── index.ts     # Server entry
+│           ├── routes/      # Route handlers
+│           ├── data.ts      # In-memory data
+│           └── types.ts
+├── docker/                  # Production Dockerfiles & nginx config
+├── docs/                    # Architecture docs
+├── document/product/        # PRD & market research
+├── docker-compose.yml
+└── pnpm-workspace.yaml
 ```
+
+## Target Personas
+
+1. **Overwhelmed Professional** — 66% burnout, 11+ hours/week in meetings, interrupted every 3 minutes
+2. **Student / Knowledge Worker** — 30% of Gen Z face daily productivity anxiety
+3. **Executive Dysfunction / ADHD** — validated by Amazing Marvin's success in this niche
 
 ## Contributing
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## License

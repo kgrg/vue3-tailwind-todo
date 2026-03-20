@@ -8,7 +8,7 @@
 
 | Field | Value | Evidence |
 |---|---|---|
-| Build Tool | Vite 5 (`^5.1.6`) | `package.json` devDependencies |
+| Build Tool | Vite+ (`vite-plus` 0.1.12, `@voidzero-dev/vite-plus-core` 0.1.12) | `package.json` devDependencies + `pnpm.overrides` |
 | Config File | `vite.config.ts` | Root directory |
 | Entry Point | `index.html` → `src/main.ts` | `index.html` script tag |
 | Output | `dist/` | Vite default |
@@ -37,9 +37,9 @@
 
 | Command | Script | What It Does | Evidence |
 |---|---|---|---|
-| `pnpm dev` | `vite` | Start Vite dev server at `http://localhost:5173` | `package.json` scripts |
-| `pnpm build` | `vite build` | Production build to `dist/` | `package.json` scripts |
-| `pnpm preview` | `vite preview` | Serve production build locally | `package.json` scripts |
+| `pnpm dev` | `vp dev` | Start Vite+ dev server at `http://localhost:5173` | `package.json` scripts |
+| `pnpm build` | `vp build` | Production build to `dist/` | `package.json` scripts |
+| `pnpm preview` | `vp preview` | Serve production build locally | `package.json` scripts |
 
 ---
 
@@ -76,7 +76,8 @@
 
 | Package | Version | Purpose |
 |---|---|---|
-| `vite` | `^5.1.6` | Build tool |
+| `vite-plus` | `0.1.12` | Unified toolchain (Vite+ replaces standalone Vite) |
+| `@voidzero-dev/vite-plus-core` | `0.1.12` | Vite+ core (overrides `vite` peer) |
 | `@vitejs/plugin-vue` | `^5.0.4` | Vue Vite plugin |
 | `tailwindcss` | `^4.1.4` | Tailwind CSS |
 | `@types/node` | `22.14.1` | Node.js type definitions |

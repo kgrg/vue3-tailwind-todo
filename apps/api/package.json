@@ -1,0 +1,19 @@
+{
+  "name": "@taskflow/api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-strip-types --watch src/index.ts",
+    "build": "vp pack",
+    "start": "node dist/index.mjs"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "22.14.1",
+    "vite-plus": "latest"
+  }
+}

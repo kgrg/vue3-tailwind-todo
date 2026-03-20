@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#030712"/>
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(99,102,241,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Icon -->
+  <g transform="translate(540, 140)">
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="rgba(45,212,191,0.12)"/>
+    <path d="M24 68L84 18 66 58h48L36 118l18-50H24z" stroke="#2DD4BF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <!-- Title -->
+  <text x="600" y="330" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="72" font-weight="700" fill="#F9FAFB">Focus<tspan fill="#2DD4BF">OS</tspan></text>
+  <!-- Tagline -->
+  <text x="600" y="400" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="32" fill="#9CA3AF">Stop planning, start doing</text>
+  <!-- Description -->
+  <text x="600" y="460" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#6B7280">AI-powered daily planning that keeps your day realistic</text>
+  <!-- Bottom accent line -->
+  <rect x="450" y="540" width="300" height="3" rx="1.5" fill="#2DD4BF" opacity="0.5"/>
+</svg>
