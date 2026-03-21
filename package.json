@@ -18,11 +18,6 @@
     "@voidzero-dev/vite-plus-core": "latest",
     "vite-plus": "latest"
   },
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest"
-    }
-  },
   "engines": {
     "node": ">=22.18.0"
   },
