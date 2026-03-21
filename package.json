@@ -8,8 +8,11 @@
     "build": "pnpm -r build",
     "dev:web": "pnpm --filter @taskflow/web dev",
     "dev:api": "pnpm --filter @taskflow/api dev",
+    "dev:storybook": "pnpm --filter @taskflow/ui storybook",
     "build:web": "pnpm --filter @taskflow/web build",
-    "build:api": "pnpm --filter @taskflow/api build"
+    "build:api": "pnpm --filter @taskflow/api build",
+    "build:storybook": "pnpm --filter @taskflow/ui build-storybook",
+    "build:ui": "pnpm --filter @taskflow/ui build"
   },
   "devDependencies": {
     "@voidzero-dev/vite-plus-core": "latest",

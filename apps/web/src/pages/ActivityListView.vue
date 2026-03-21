@@ -153,12 +153,11 @@ import {
   TrashIcon,
   DocumentIcon 
 } from '@heroicons/vue/24/outline'
+import { BaseInput, BaseSelect } from '@taskflow/ui'
 import { useActivityStore } from '@/modules/activities/store/activities.store'
 import NewActivityModal from '@/modules/activities/components/NewActivityModal.vue'
 import BaseListItem from '@/core/components/BaseListItem.vue'
 import type { Activity } from '@/modules/activities/types/activity.types'
-import BaseSelect from '@/core/components/BaseSelect.vue'
-import BaseInput from '@/core/components/BaseInput.vue'
 
 const activityStore = useActivityStore()
 const isNewActivityModalOpen = ref(false)

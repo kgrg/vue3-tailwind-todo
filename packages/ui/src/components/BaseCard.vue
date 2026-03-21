@@ -1,9 +1,9 @@
 <template>
-  <div 
-    class="bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-shadow"
+  <div
+    class="rounded-xl border border-gray-100 bg-white p-4 transition-shadow hover:shadow-md"
     :class="customClass"
   >
-    <div class="flex items-center justify-between mb-3">
+    <div class="mb-3 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <slot name="header-left"></slot>
       </div>
@@ -27,4 +27,4 @@
 defineProps<{
   customClass?: string
 }>()
-</script> 
+</script>

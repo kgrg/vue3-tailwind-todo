@@ -60,9 +60,8 @@ import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../store/auth.store'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline'
+import { BaseCheckbox, BaseInput } from '@taskflow/ui'
 import SpinnerIcon from '@/core/icons/SpinnerIcon.vue'
-import BaseInput from '@/core/components/BaseInput.vue'
-import BaseCheckbox from '@/core/components/BaseCheckbox.vue'
 import type { LoginCredentials } from '../types'
 
 const router = useRouter()

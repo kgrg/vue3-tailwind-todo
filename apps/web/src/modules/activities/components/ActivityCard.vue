@@ -47,9 +47,9 @@
 
 <script setup lang="ts">
 import { ClockIcon, MapPinIcon } from '@heroicons/vue/24/outline'
+import { BaseCard } from '@taskflow/ui'
 import { useActivityStore } from '../store/activities.store'
 import type { Activity } from '../types/activity.types'
-import BaseCard from '@/core/components/BaseCard.vue'
 
 const props = defineProps<{
   id: Activity['id']

@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { BaseCard } from '@taskflow/ui'
 import type { Habit } from '../types'
-import BaseCard from '@/core/components/BaseCard.vue'
 
 const props = defineProps<{
   title: string

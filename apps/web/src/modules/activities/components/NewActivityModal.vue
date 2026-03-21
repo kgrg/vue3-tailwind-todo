@@ -105,11 +105,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { BaseInput, BaseSelect, BaseTextarea } from '@taskflow/ui'
 import { useActivityStore } from '../store/activities.store'
 import type { NewActivityForm } from '../types/activity.types'
-import BaseInput from '@/core/components/BaseInput.vue'
-import BaseTextarea from '@/core/components/BaseTextarea.vue'
-import BaseSelect from '@/core/components/BaseSelect.vue'
 
 const props = defineProps<{
   isOpen: boolean

@@ -8,7 +8,7 @@ Use it together with path-scoped instructions in `.github/instructions/`.
 - Product type: `pnpm` workspace with separate web and API apps.
 - Product focus: activity, habit, and task planning with an emphasis on focus, realism, and reducing overwhelm.
 - Stack: Vue 3, Vite 5, Pinia, Vue Router, Tailwind CSS 4, TypeScript on the web app; Express with TypeScript on the API app.
-- Architecture: frontend code lives under `apps/web/src/` with feature modules in `modules/`, shared UI in `core/`, route-level views in `pages/`, and layouts in `layouts/`. API routes and in-memory data live under `apps/api/src/`.
+- Architecture: frontend code lives under `apps/web/src/` with feature modules in `modules/`, shared UI in `core/`, route-level views in `pages/`, and layouts in `layouts/`. API routes and in-memory data live under `apps/api/src/`. Shared reusable UI package code lives under `packages/ui/`.
 
 ## Verified Commands
 
@@ -20,8 +20,11 @@ pnpm dev
 pnpm build
 pnpm dev:web
 pnpm dev:api
+pnpm dev:storybook
 pnpm build:web
 pnpm build:api
+pnpm build:storybook
+pnpm build:ui
 ```
 
 Do not invent `pnpm test`, `pnpm lint`, formatter, or preview commands at the repo root. No test runner, linter, or CI pipeline is configured yet.
@@ -30,7 +33,7 @@ Do not invent `pnpm test`, `pnpm lint`, formatter, or preview commands at the re
 
 1. Prefer live code and `package.json` over stale documentation when they disagree.
 2. Keep module boundaries clean. Code in `apps/web/src/modules/<feature>/` may depend on `apps/web/src/core/` but should not import from other feature modules unless the existing architecture already does so and the change is intentional.
-3. Shared UI belongs in `apps/web/src/core/components/`. Feature-specific UI belongs in the owning module.
+3. Shared reusable UI primitives may live in `packages/ui/` when they are intended to be reused across app boundaries or documented in Storybook. App-specific shared UI belongs in `apps/web/src/core/components/`.
 4. New pages should use the `View.vue` suffix. Layouts should use the `Layout.vue` suffix.
 5. Prefer TypeScript for new code and keep types close to the owning module.
 6. Use the `@/` alias for imports into `apps/web/src/`.
