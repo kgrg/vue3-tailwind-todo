@@ -1,5 +1,5 @@
 <template>
-  <BaseCard>
+  <Card>
     <template #header-left>
       <span 
         class="w-2 h-2 rounded-full"
@@ -42,12 +42,12 @@
         <span>{{ location }}</span>
       </div>
     </template>
-  </BaseCard>
+  </Card>
 </template>
 
 <script setup lang="ts">
 import { ClockIcon, MapPinIcon } from '@heroicons/vue/24/outline'
-import { BaseCard } from '@taskflow/ui'
+import { Card } from '@taskflow/ui'
 import { useActivityStore } from '../store/activities.store'
 import type { Activity } from '../types/activity.types'
 

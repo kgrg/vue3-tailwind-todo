@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import BaseSelect from './BaseSelect.vue'
+import Select from './Select.vue'
 
 const options = [
   { value: 'work', label: 'Work' },
@@ -8,14 +8,14 @@ const options = [
 ]
 
 const meta = {
-  title: 'Form/BaseSelect',
-  component: BaseSelect,
+  title: 'Form/Select',
+  component: Select,
   tags: ['autodocs'],
   argTypes: {
     icon: { control: false },
     'onUpdate:modelValue': { action: 'update:modelValue' },
   },
-} satisfies Meta<typeof BaseSelect>
+} satisfies Meta<typeof Select>
 
 export default meta
 

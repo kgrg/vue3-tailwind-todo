@@ -17,7 +17,7 @@
     <!-- Filters -->
     <div class="bg-white rounded-lg border border-gray-200 p-4 mb-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <BaseSelect
+        <Select
           v-model="filters.category"
           label="Category"
           :options="[
@@ -29,7 +29,7 @@
             { value: 'Other', label: 'Other' }
           ]"
         />
-        <BaseSelect
+        <Select
           v-model="filters.status"
           label="Status"
           :options="[
@@ -38,7 +38,7 @@
             { value: 'pending', label: 'Pending' }
           ]"
         />
-        <BaseInput
+        <Input
           v-model="filters.search"
           label="Search"
           placeholder="Search activities..."
@@ -79,7 +79,7 @@
         >
           <template #leading>
             <div 
-              class="w-3 h-3 mt-1.5 rounded-full flex-shrink-0"
+              class="w-3 h-3 mt-1.5 rounded-full shrink-0"
               :class="{
                 'bg-blue-500': activity.category === 'Work',
                 'bg-green-500': activity.category === 'Personal',
@@ -153,7 +153,7 @@ import {
   TrashIcon,
   DocumentIcon 
 } from '@heroicons/vue/24/outline'
-import { BaseInput, BaseSelect } from '@taskflow/ui'
+import { Input, Select } from '@taskflow/ui'
 import { useActivityStore } from '@/modules/activities/store/activities.store'
 import NewActivityModal from '@/modules/activities/components/NewActivityModal.vue'
 import BaseListItem from '@/core/components/BaseListItem.vue'

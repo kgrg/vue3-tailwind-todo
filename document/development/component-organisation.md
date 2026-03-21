@@ -18,7 +18,7 @@ src/
     │   ├── AppShell.vue
     │   └── Sidebar.vue
     └── shared/
-        ├── BaseButton.vue
+        ├── Button.vue
         └── EmptyState.vue
 ```
 
@@ -28,8 +28,8 @@ src/
 
 ## Naming Conventions
 
-- Use **PascalCase** for component filenames and exports: `InboxMessage.vue`, `BaseButton.vue`.
-- Prefix global UI primitives with `Base` or `App` to signal their intent (`BaseInput`, `AppLogo`).
+- Use **PascalCase** for component filenames and exports: `InboxMessage.vue`, `Button.vue`.
+- Use plain names for shared package primitives when the package boundary already communicates their role (`Button`, `Input`, `Modal`). Legacy app-local primitives may still retain `Base` until migrated.
 - For feature-specific subcomponents, prefix the feature name: `InboxFilters`, `InboxMessageCard`.
 - Mirror the folder hierarchy inside the component name when nesting deeply (e.g., `InboxMessage/Avatar` becomes `InboxMessageAvatar`).
 

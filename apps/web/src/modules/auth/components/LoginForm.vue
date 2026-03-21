@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="space-y-6">
-    <BaseInput
+    <Input
       v-model="form.email"
       type="email"
       label="Email"
@@ -9,7 +9,7 @@
       :error="errors.email"
     />
 
-    <BaseInput
+    <Input
       v-model="form.password"
       :type="showPassword ? 'text' : 'password'"
       label="Password"
@@ -27,10 +27,10 @@
           <EyeSlashIcon v-else class="h-5 w-5 text-gray-400" />
         </button>
       </template>
-    </BaseInput>
+    </Input>
 
     <div class="flex items-center justify-between">
-      <BaseCheckbox
+      <Checkbox
         v-model="form.remember"
         label="Remember me"
       />
@@ -60,7 +60,7 @@ import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../store/auth.store'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/24/outline'
-import { BaseCheckbox, BaseInput } from '@taskflow/ui'
+import { Checkbox, Input } from '@taskflow/ui'
 import SpinnerIcon from '@/core/icons/SpinnerIcon.vue'
 import type { LoginCredentials } from '../types'
 

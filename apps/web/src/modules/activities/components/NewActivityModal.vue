@@ -30,21 +30,21 @@
               </DialogTitle>
 
               <form @submit.prevent="handleSubmit" class="mt-4 space-y-6">
-                <BaseInput
+                <Input
                   v-model="form.title"
                   label="Title"
                   required
                   placeholder="Enter activity title"
                 />
 
-                <BaseTextarea
+                <Textarea
                   v-model="form.description"
                   label="Description"
                   :rows="3"
                   placeholder="Enter activity description"
                 />
 
-                <BaseSelect
+                <Select
                   v-model="form.category"
                   label="Category"
                   :options="[
@@ -58,13 +58,13 @@
                 />
 
                 <div class="grid grid-cols-2 gap-4">
-                  <BaseInput
+                  <Input
                     v-model="form.date"
                     type="date"
                     label="Date"
                     required
                   />
-                  <BaseInput
+                  <Input
                     v-model="form.time"
                     type="time"
                     label="Time"
@@ -72,7 +72,7 @@
                   />
                 </div>
 
-                <BaseInput
+                <Input
                   v-model="form.location"
                   label="Location (Optional)"
                   placeholder="Enter location"
@@ -105,7 +105,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { BaseInput, BaseSelect, BaseTextarea } from '@taskflow/ui'
+import { Input, Select, Textarea } from '@taskflow/ui'
 import { useActivityStore } from '../store/activities.store'
 import type { NewActivityForm } from '../types/activity.types'
 

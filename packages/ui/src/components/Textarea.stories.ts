@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import BaseTextarea from './BaseTextarea.vue'
+import Textarea from './Textarea.vue'
 
 const meta = {
-  title: 'Form/BaseTextarea',
-  component: BaseTextarea,
+  title: 'Form/Textarea',
+  component: Textarea,
   tags: ['autodocs'],
   argTypes: {
     icon: { control: false },
     'onUpdate:modelValue': { action: 'update:modelValue' },
   },
-} satisfies Meta<typeof BaseTextarea>
+} satisfies Meta<typeof Textarea>
 
 export default meta
 

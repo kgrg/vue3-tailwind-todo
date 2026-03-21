@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import BaseCard from './BaseCard.vue'
+import Card from './Card.vue'
 
 const meta = {
-  title: 'Layout/BaseCard',
-  component: BaseCard,
+  title: 'Layout/Card',
+  component: Card,
   tags: ['autodocs'],
   render: (args) => ({
-    components: { BaseCard },
+    components: { Card },
     setup: () => ({ args }),
     template: `
-      <BaseCard v-bind="args" style="width: 320px;">
+      <Card v-bind="args" style="width: 320px;">
         <template #header-left>
           <span class="text-sm font-medium text-gray-600">Work</span>
         </template>
@@ -26,10 +26,10 @@ const meta = {
         <template #footer-right>
           <span>Planning</span>
         </template>
-      </BaseCard>
+      </Card>
     `,
   }),
-} satisfies Meta<typeof BaseCard>
+} satisfies Meta<typeof Card>
 
 export default meta
 

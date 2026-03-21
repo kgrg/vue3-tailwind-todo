@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import BaseInput from './BaseInput.vue'
+import Input from './Input.vue'
 
 const meta = {
-  title: 'Form/BaseInput',
-  component: BaseInput,
+  title: 'Form/Input',
+  component: Input,
   tags: ['autodocs'],
   argTypes: {
     icon: { control: false },
     'onUpdate:modelValue': { action: 'update:modelValue' },
   },
-} satisfies Meta<typeof BaseInput>
+} satisfies Meta<typeof Input>
 
 export default meta
 

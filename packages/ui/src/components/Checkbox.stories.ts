@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import BaseCheckbox from './BaseCheckbox.vue'
+import Checkbox from './Checkbox.vue'
 
 const meta = {
-  title: 'Form/BaseCheckbox',
-  component: BaseCheckbox,
+  title: 'Form/Checkbox',
+  component: Checkbox,
   tags: ['autodocs'],
   argTypes: {
     'onUpdate:modelValue': { action: 'update:modelValue' },
   },
-} satisfies Meta<typeof BaseCheckbox>
+} satisfies Meta<typeof Checkbox>
 
 export default meta
 

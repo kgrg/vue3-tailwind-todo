@@ -30,13 +30,8 @@ The Vue 3 + Tailwind Todo application (JustDo Vue) is organized using a **modula
 │   ├── App.vue                      # Root component
 │   ├── core/                        # Core system - shared components & utilities
 │   │   ├── components/              # Reusable UI components
-│   │   │   ├── BaseCard.vue         # Base card component
-│   │   │   ├── BaseInput.vue        # Base input component
-│   │   │   ├── BaseCheckbox.vue     # Base checkbox component
-│   │   │   ├── BaseSelect.vue       # Base select component
-│   │   │   ├── BaseTextarea.vue     # Base textarea component
-│   │   │   ├── BaseTag.vue          # Base tag component
-│   │   │   ├── BaseListItem.vue     # Base list item component
+│   │   │   ├── BaseTag.vue          # Legacy local tag primitive
+│   │   │   ├── BaseListItem.vue     # Legacy local list item primitive
 │   │   │   ├── ActivityStats.vue    # Activity statistics component
 │   │   │   ├── NavItem.vue          # Navigation item component
 │   │   │   └── charts/              # Chart components
@@ -169,7 +164,7 @@ The main source directory containing all application code, organized using a mod
 The core system containing shared components, utilities, and infrastructure:
 
 - **`components/`**: Reusable UI components with consistent design patterns
-  - Base components (BaseCard, BaseInput, BaseCheckbox, etc.)
+  - Legacy local primitives (BaseTag, BaseListItem) and specialized shared components
   - Specialized components (ActivityStats, NavItem)
   - Chart components for data visualization
 - **`icons/`**: Icon components and icon management
@@ -309,7 +304,7 @@ Feature specifications and contracts:
 
 ### Files
 
-- **Components**: PascalCase (e.g., `ActivityCard.vue`, `BaseInput.vue`, `TodoList.vue`)
+- **Components**: PascalCase (e.g., `ActivityCard.vue`, `Input.vue`, `TodoList.vue`)
 - **Stores**: camelCase with `.store.ts` suffix (e.g., `activities.store.ts`, `auth.store.ts`)
 - **Types**: camelCase with `.types.ts` suffix (e.g., `activity.types.ts`)
 - **Pages**: PascalCase with `Page.vue` suffix (e.g., `LoginPage.vue`)
@@ -351,11 +346,15 @@ src/types/activity.ts
 Keep shared components and utilities in the core system:
 
 ```bash
-# ✅ Good - Reusable base components
+# ✅ Good - Reusable shared components
 src/core/components/
-  ├── BaseCard.vue
-  ├── BaseInput.vue
-  └── BaseButton.vue
+  ├── BaseListItem.vue
+  └── BaseTag.vue
+
+packages/ui/src/components/
+  ├── Card.vue
+  ├── Input.vue
+  └── Button.vue
 
 # ❌ Avoid - Duplicating common functionality
 src/modules/activities/components/ActivityCard.vue

@@ -41,7 +41,7 @@
 import { ExclamationCircleIcon } from '@heroicons/vue/24/outline'
 import type { Component } from 'vue'
 
-export interface BaseSelectOption {
+export interface SelectOption {
   value: string | number
   label: string
   disabled?: boolean
@@ -51,7 +51,7 @@ defineProps<{
   modelValue: string | number
   id?: string
   label?: string
-  options: BaseSelectOption[]
+  options: SelectOption[]
   placeholder?: string
   required?: boolean
   disabled?: boolean
