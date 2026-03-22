@@ -1,0 +1,15 @@
+[
+  { "name": "Keaton", "role": "Lead", "universe": "usual_suspects", "status": "active" },
+  { "name": "McManus", "role": "Frontend Dev", "universe": "usual_suspects", "status": "active" },
+  { "name": "Fenster", "role": "Backend Dev", "universe": "usual_suspects", "status": "active" },
+  { "name": "Hockney", "role": "Tester", "universe": "usual_suspects", "status": "active" },
+  { "name": "Kobayashi", "role": "Product Owner", "universe": "usual_suspects", "status": "active" },
+  { "name": "Kujan", "role": "Business Analyst", "universe": "usual_suspects", "status": "active" },
+  { "name": "Verbal", "role": "User Researcher", "universe": "usual_suspects", "status": "active" },
+  { "name": "Baer", "role": "DevSecOps", "universe": "usual_suspects", "status": "active" },
+  { "name": "Redfoot", "role": "Delivery Manager", "universe": "usual_suspects", "status": "active" },
+  { "name": "Edie", "role": "Content Designer", "universe": "usual_suspects", "status": "active" },
+  { "name": "Rabin", "role": "Designer", "universe": "usual_suspects", "status": "active" },
+  { "name": "Scribe", "role": "Scribe", "universe": "meta", "status": "active" },
+  { "name": "Ralph", "role": "Work Monitor", "universe": "meta", "status": "active" }
+]

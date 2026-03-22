@@ -1,0 +1,4 @@
+{
+  "universe_allowlist": ["usual_suspects"],
+  "max_agents": 20
+}
