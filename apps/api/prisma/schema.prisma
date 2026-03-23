@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  name         String?
+  workingHours String? // JSON string for working hours configuration
+  tasks        Task[]
+  dailyPlans   DailyPlan[]
+  reflections  Reflection[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Task {
+  id                String          @id @default(uuid())
+  title             String
+  status            String          @default("TODO") // TODO, IN_PROGRESS, DONE, ARCHIVED
+  estimatedDuration Int? // In minutes
+  energyLevel       String? // HIGH, MEDIUM, LOW
+  dueAt             DateTime?
+  postponeCount     Int             @default(0)
+  userId            String
+  user              User            @relation(fields: [userId], references: [id])
+  postponeEvents    PostponeEvent[]
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  DailyPlan         DailyPlan?      @relation(fields: [dailyPlanId], references: [id])
+  dailyPlanId       String?
+}
+
+model PostponeEvent {
+  id          String   @id @default(uuid())
+  taskId      String
+  task        Task     @relation(fields: [taskId], references: [id])
+  reason      String?
+  postponedAt DateTime @default(now())
+}
+
+model DailyPlan {
+  id        String   @id @default(uuid())
+  date      DateTime
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  tasks     Task[]
+  metrics   String? // JSON string for metrics
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([userId, date])
+}
+
+model Reflection {
+  id        String   @id @default(uuid())
+  type      String // DAILY, WEEKLY
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

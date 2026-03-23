@@ -6,14 +6,20 @@
   "scripts": {
     "dev": "node --experimental-strip-types --watch src/index.ts",
     "build": "vp pack",
-    "start": "node dist/index.mjs"
+    "start": "node dist/index.mjs",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate"
   },
   "dependencies": {
+    "@prisma/client": "7.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
     "@types/node": "22.14.1",
+    "dotenv": "17.3.1",
+    "prisma": "7.5.0",
     "vite-plus": "latest"
   }
 }
