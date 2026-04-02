@@ -1,25 +1,18 @@
 {
-  "name": "taskflow",
-  "private": true,
+  "name": "todo-vite-plus",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
-    "dev:web": "pnpm --filter @taskflow/web dev",
-    "dev:api": "pnpm --filter @taskflow/api dev",
-    "dev:storybook": "pnpm --filter @taskflow/ui storybook",
-    "build:web": "pnpm --filter @taskflow/web build",
-    "build:api": "pnpm --filter @taskflow/api build",
-    "build:storybook": "pnpm --filter @taskflow/ui build-storybook",
-    "build:ui": "pnpm --filter @taskflow/ui build"
+    "ready": "vp fmt && vp lint && vp run test -r && vp run build -r",
+    "dev": "vp run website#dev",
+    "prepare": "vp config"
   },
   "devDependencies": {
-    "@voidzero-dev/vite-plus-core": "latest",
-    "vite-plus": "latest"
+    "vite-plus": "catalog:"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=22.12.0"
   },
-  "packageManager": "pnpm@9.12.3+sha1.4fb96925d434c491285182acf29803bb9aa2e6e5"
+  "packageManager": "pnpm@10.33.0"
 }

@@ -1,32 +1,16 @@
 {
-  "name": "@taskflow/web",
-  "private": true,
+  "name": "website",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "vp build",
+    "build": "tsc && vp build",
     "preview": "vp preview"
   },
-  "dependencies": {
-    "@taskflow/ui": "workspace:*",
-    "@headlessui/vue": "1.7.23",
-    "@heroicons/vue": "2.2.0",
-    "@tailwindcss/vite": "4.1.4",
-    "chart.js": "4.4.9",
-    "heroicons": "2.2.0",
-    "pinia": "^2.1.7",
-    "uuid": "11.1.0",
-    "vue": "^3.4.21",
-    "vue-router": "4.5.0"
-  },
   "devDependencies": {
-    "@types/chart.js": "2.9.41",
-    "@types/node": "22.14.1",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@voidzero-dev/vite-plus-core": "latest",
-    "tailwindcss": "^4.1.4",
-    "vite": "latest",
-    "vite-plus": "latest"
+    "typescript": "~5.9.3",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
   }
 }
